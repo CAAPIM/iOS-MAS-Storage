@@ -1,0 +1,24 @@
+//
+//  MASStorage-PrefixHeader.pch
+//  MASStorage
+//
+//  Created by Luis Sanches on 2015-12-16.
+//  Copyright © 2015 CA Technologies. All rights reserved.
+//
+
+#ifndef MASStorage_PrefixHeader_pch
+#define MASStorage_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import <Foundation/Foundation.h>
+#import "MASStorageConstants.h"
+
+#endif /* MASStorage_PrefixHeader_pch */
+
+#ifdef DEBUG
+#   define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#else
+#   define DLog(...)
+#endif

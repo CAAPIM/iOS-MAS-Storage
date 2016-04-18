@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C50254ADF7AA4848B126899AEF285BD8A4159D17",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C50254ADF7AA4848B126899AEF285BD8A4159D17" : 0,
+    "239D5B7268D77537CFDF185CE2873964CE7CFE3C" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D4A06F1B-D46E-41DD-98B8-AF04698D0CA8",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C50254ADF7AA4848B126899AEF285BD8A4159D17" : "MASStorage\/",
+    "239D5B7268D77537CFDF185CE2873964CE7CFE3C" : "MASFoundation\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "MASStorage",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "MASStorage.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github-isl-01.ca.com\/MAS\/iOS-MAS-Foundation.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "239D5B7268D77537CFDF185CE2873964CE7CFE3C"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github-isl-01.ca.com\/MAS\/iOS-MAS-Storage.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C50254ADF7AA4848B126899AEF285BD8A4159D17"
+    }
+  ]
+}

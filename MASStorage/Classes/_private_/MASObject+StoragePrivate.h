@@ -2,8 +2,10 @@
 //  MASObject+StoragePrivate.h
 //  MASStorage
 //
-//  Created by Luis Sanches on 2015-12-23.
-//  Copyright © 2015 CA Technologies. All rights reserved.
+//  Copyright (c) 2016 CA, Inc.
+//
+//  This software may be modified and distributed under the terms
+//  of the MIT license. See the LICENSE file for details.
 //
 
 #import <MASFoundation/MASFoundation.h>

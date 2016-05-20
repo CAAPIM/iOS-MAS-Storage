@@ -2,8 +2,10 @@
 //  MASStorageConstantsPrivate.h
 //  MASStorage
 //
-//  Created by Luis Sanches on 2016-04-12.
-//  Copyright © 2016 CA Technologies. All rights reserved.
+//  Copyright (c) 2016 CA, Inc.
+//
+//  This software may be modified and distributed under the terms
+//  of the MIT license. See the LICENSE file for details.
 //
 
 #ifndef MASStorageConstantsPrivate_h

@@ -1,16 +1,16 @@
 {
-  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C50254ADF7AA4848B126899AEF285BD8A4159D17",
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "97DC0185CD976D2F78D60477CC596267852C8169",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
-    "C50254ADF7AA4848B126899AEF285BD8A4159D17" : 0,
-    "239D5B7268D77537CFDF185CE2873964CE7CFE3C" : 0
+    "97DC0185CD976D2F78D60477CC596267852C8169" : 0,
+    "569BE486C635318F0F9CA133A1F6B7D5F6DF1F77" : 0
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "D4A06F1B-D46E-41DD-98B8-AF04698D0CA8",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "C50254ADF7AA4848B126899AEF285BD8A4159D17" : "MASStorage\/",
-    "239D5B7268D77537CFDF185CE2873964CE7CFE3C" : "MASFoundation\/"
+    "97DC0185CD976D2F78D60477CC596267852C8169" : "MASStorage\/",
+    "569BE486C635318F0F9CA133A1F6B7D5F6DF1F77" : "MASFoundation\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "MASStorage",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
@@ -19,12 +19,12 @@
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github-isl-01.ca.com\/MAS\/iOS-MAS-Foundation.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "239D5B7268D77537CFDF185CE2873964CE7CFE3C"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "569BE486C635318F0F9CA133A1F6B7D5F6DF1F77"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github-isl-01.ca.com\/MAS\/iOS-MAS-Storage.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C50254ADF7AA4848B126899AEF285BD8A4159D17"
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "97DC0185CD976D2F78D60477CC596267852C8169"
     }
   ]
 }

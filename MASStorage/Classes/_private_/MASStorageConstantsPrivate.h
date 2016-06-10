@@ -14,7 +14,12 @@
 
 #endif /* MASStorageConstantsPrivate_h */
 
+static NSString *const MASStorageEndPointKey = @"mas-storage-path"; // string
+
+#define kSDKErrorDomain     @"com.ca.MASStorage:ErrorDomain"
+
 typedef NS_ENUM (NSUInteger, MASStorageError)
 {
     MASStorageErrorObjectNotSupported = 101,
+    MASStorageErrorLocalStorageNotEnabled = 102,
 };

@@ -297,14 +297,14 @@ static MASDatabase *_sharedDatabase = nil;
     NSParameterAssert(key);
     
     //
-    //Open DB
+    // Open DB
     //
     if ([self openDB]) {
         
         //
         // Construct the query and empty prepared statement.
         //
-        NSString *querySQL = [NSString stringWithFormat:@"SELECT KEY, VALUE, TYPE, MODIFIED_DATE FROM PROPERTIES WHERE KEY=\"%@\"", key];
+        NSString *querySQL = [NSString stringWithFormat:@"SELECT KEY, VALUE, TYPE, MODIFIED_DATE, CREATED_DATE, CREATED_BY FROM PROPERTIES WHERE KEY=\"%@\"", key];
         const char *query_stmt = [querySQL UTF8String];
         sqlite3_stmt *statement;
 
@@ -319,13 +319,13 @@ static MASDatabase *_sharedDatabase = nil;
                 NSMutableDictionary *returnData = [[NSMutableDictionary alloc] init];
                 
                 //
-                //Adding KEY to Dictionary
+                // Adding KEY to Dictionary
                 //
                 [returnData setObject:[[NSString alloc] initWithUTF8String:(const char *)sqlite3_column_text(statement, 0)] forKey:@"key"];
                 
                 
                 //
-                //Adding VALUE to Dictionary
+                // Adding VALUE to Dictionary
                 //
                 const void *ptr = sqlite3_column_blob(statement, 1);
                 int size = sqlite3_column_bytes(statement, 1);
@@ -335,13 +335,13 @@ static MASDatabase *_sharedDatabase = nil;
 
                 
                 //
-                //Adding TYPE to Dictionary
+                // Adding TYPE to Dictionary
                 //
                 NSString *type = [[NSString alloc] initWithUTF8String:(const char *)sqlite3_column_text(statement, 2)];
                 [returnData setObject:type forKey:@"type"];
                 
                 //
-                //Adding MODIFIED_DATE to Dictionary
+                // Adding MODIFIED_DATE to Dictionary
                 //
                 NSDate *date = [NSDate dateWithTimeIntervalSince1970: sqlite3_column_double(statement, 3)];
                 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -359,7 +359,7 @@ static MASDatabase *_sharedDatabase = nil;
                 DLog(@"could not find value for key %@", key);
                 
                 //
-                //Create Error Message
+                // Create Error Message
                 //
                 NSString *message = NSLocalizedString(@"Failed to GET object from local storage. Error #: ", Nil);
                 message = [NSString stringWithFormat:@"%@%s",message,sqlite3_errmsg(database)];
@@ -368,7 +368,7 @@ static MASDatabase *_sharedDatabase = nil;
                                                           userInfo:@{NSLocalizedDescriptionKey:message}];
                 
                 //
-                //Block callback
+                // Block callback
                 //
                 if (completion) {
                     
@@ -405,14 +405,14 @@ static MASDatabase *_sharedDatabase = nil;
     NSMutableArray *returnArray = [[NSMutableArray alloc] init];
     
     //
-    //Open DB
+    // Open DB
     //
     if ([self openDB]) {
         
         //
         // Construct the query and empty prepared statement.
         //
-        NSString *querySQL = @"SELECT KEY, VALUE, TYPE, MODIFIED_DATE FROM PROPERTIES";
+        NSString *querySQL = @"SELECT KEY, VALUE, TYPE, MODIFIED_DATE, CREATED_DATE, CREATED_BY FROM PROPERTIES";
         const char *query_stmt = [querySQL UTF8String];
         sqlite3_stmt *statement;
         
@@ -427,12 +427,12 @@ static MASDatabase *_sharedDatabase = nil;
                 NSMutableDictionary *returnData = [[NSMutableDictionary alloc] init];
                 
                 //
-                //Adding KEY to Dictionary
+                // Adding KEY to Dictionary
                 //
                 [returnData setObject:[[NSString alloc] initWithUTF8String:(const char *)sqlite3_column_text(statement, 0)] forKey:@"key"];
                 
                 //
-                //Adding VALUE to Dictionary
+                // Adding VALUE to Dictionary
                 //
                 const void *ptr = sqlite3_column_blob(statement, 1);
                 int size = sqlite3_column_bytes(statement, 1);
@@ -441,13 +441,13 @@ static MASDatabase *_sharedDatabase = nil;
                 [returnData setObject:objData forKey:@"value"];
                 
                 //
-                //Adding TYPE to Dictionary
+                // Adding TYPE to Dictionary
                 //
                 NSString *type = [[NSString alloc] initWithUTF8String:(const char *)sqlite3_column_text(statement, 2)];
                 [returnData setObject:type forKey:@"type"];
 
                 //
-                //Adding MODIFIED_DATE to Dictionary
+                // Adding MODIFIED_DATE to Dictionary
                 //
                 NSDate *date = [NSDate dateWithTimeIntervalSince1970: sqlite3_column_double(statement, 3)];
                 NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -457,7 +457,7 @@ static MASDatabase *_sharedDatabase = nil;
 
                 
                 //
-                //Adding Data to ReturnArray
+                // Adding Data to ReturnArray
                 //
                 [returnArray addObject:returnData];
             }
@@ -693,7 +693,7 @@ static MASDatabase *_sharedDatabase = nil;
             
             char *errMsg;
             //KEY VARCHAR PRIMARY KEY NOT NULL UNIQUE
-            const char *sql_stmt = "CREATE TABLE IF NOT EXISTS PROPERTIES (KEY VARCHAR PRIMARY KEY NOT NULL UNIQUE, VALUE BLOB, TYPE VARCHAR, MODIFIED_DATE DOUBLE);";
+            const char *sql_stmt = "CREATE TABLE IF NOT EXISTS PROPERTIES (KEY VARCHAR PRIMARY KEY NOT NULL UNIQUE, VALUE BLOB, TYPE VARCHAR, MODIFIED_DATE DOUBLE, CREATED_DATE DOUBLE, CREATED_BY VARCHAR);";
             
             if (sqlite3_exec(database, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK) {
                 

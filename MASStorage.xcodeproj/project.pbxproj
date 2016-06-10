@@ -33,7 +33,7 @@
 		A4567F281C8CB690000486BA /* MAS+LocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = A4567F171C8CB690000486BA /* MAS+LocalStorage.m */; };
 		A4567F2F1C8CB690000486BA /* MASSecureStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = A4567F1E1C8CB690000486BA /* MASSecureStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A4567F301C8CB690000486BA /* MASSecureStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = A4567F1F1C8CB690000486BA /* MASSecureStorage.m */; };
-		A4567F311C8CB690000486BA /* MASStorageConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = A4567F201C8CB690000486BA /* MASStorageConstants.h */; };
+		A4567F311C8CB690000486BA /* MASStorageConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = A4567F201C8CB690000486BA /* MASStorageConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A4567F341C8CB7B6000486BA /* MASObject+MASStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = A4567F321C8CB7B6000486BA /* MASObject+MASStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A4567F351C8CB7B6000486BA /* MASObject+MASStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = A4567F331C8CB7B6000486BA /* MASObject+MASStorage.m */; };
 		A4567F381C8CB860000486BA /* MASCloudStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = A4567F361C8CB860000486BA /* MASCloudStorage.h */; };

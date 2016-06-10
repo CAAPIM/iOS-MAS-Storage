@@ -14,8 +14,44 @@
 
 #endif /* MASStorageConstants_h */
 
-static NSString *const MASDefaultStuff = @"h9872$&!489ykjdhfy9y6i&#!ykfh";
+/**
+ *  Storage Modes
+ */
+typedef NS_ENUM(NSInteger, MASStorageMode) {
+    /**
+     *  Unknown Mode
+     */
+    MASStorageModeUnknown = -1,
+    /**
+     *  Data in this mode is stored and available to a specific User ONLY
+     */
+    MASStorageModeUser,
+    /**
+     *  Data in this mode is stored and available in an Application Level
+     */
+    MASStorageModeApplication,
+    /**
+     *  Data in this mode is stored and available in an Application for a specific User
+     */
+    MASStorageModeApplicationForUser
+};
 
-static NSString *const MASStorageEndPointKey = @"mas-storage-path"; // string
 
-#define kSDKErrorDomain     @"com.ca.MASStorage:ErrorDomain"
+
+/**
+ *  Sync Modes
+ */
+typedef NS_ENUM(NSInteger, SyncMode) {
+    /**
+     *  Unknown Mode
+     */
+    MASStorageSyncModeUnknown = -1,
+    /**
+     *  Sync Local and Cloud Storage automatically
+     */
+    MASStorageSyncModeAutomatically,
+    /**
+     *  Sync Local and Cloud Storage manually. Please refer to [MASSecureStorage syncStorages] for more details
+     */
+    MASStorageSyncModeManually,
+};

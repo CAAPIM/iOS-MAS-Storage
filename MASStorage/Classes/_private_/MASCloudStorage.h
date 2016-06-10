@@ -19,6 +19,29 @@
 @interface MASCloudStorage : NSObject
 
 
++ (void)findObjectUsingKey:(NSString *)key
+                      mode:(MASStorageMode)mode
+                completion:(void (^)(MASObject *object, NSError *error))completion;
+
+
++ (void)findObjectsUsingMode:(MASStorageMode)mode
+                  completion:(void (^)(NSArray *objects, NSError *error))completion;
+
++ (void)saveObject:(NSObject *)object
+           withKey:(NSString *)key
+              type:(NSString *)type
+              mode:(MASStorageMode)mode
+        completion:(void (^)(BOOL success, NSError *error))completion;
+
+
++ (void)deleteObjectUsingKey:(NSString *)key
+                        mode:(MASStorageMode)mode
+                  completion:(void (^)(BOOL success, NSError *error))completion;
+
+
+
+
+
 # pragma mark - Delete
 
 /**

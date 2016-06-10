@@ -9,14 +9,52 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import <MASFoundation/MASFoundation.h>
 
+#import "MASStorageConstants.h"
 
 /**
  *  This class exposes features for Local and Cloud Storage.
  */
 @interface MASSecureStorage : NSObject
+
+#pragma mark -
+# pragma mark ------ Cloud Storage ------
+
+
++ (void)findObjectUsingKey:(NSString *)key
+                      mode:(MASStorageMode)mode
+                completion:(void (^)(MASObject *object, NSError *error))completion;
+
++ (void)findObjectsUsingMode:(MASStorageMode)mode
+                  completion:(void (^)(NSArray *objects, NSError *error))completion;
+
++ (void)saveObject:(NSObject *)object
+           withKey:(NSString *)key
+              type:(NSString *)type
+              mode:(MASStorageMode)mode
+        completion:(void (^)(BOOL success, NSError *error))completion;
+
+//+ (void)createObject:(NSObject *)object
+//             withKey:(NSString *)key
+//                type:(NSString *)type
+//                mode:(MASStorageMode)mode
+//          completion:(void (^)(BOOL success, NSError *error))completion;
+//
+//+ (void)updateObject:(NSObject *)object
+//             withKey:(NSString *)key
+//                type:(NSString *)type
+//                mode:(MASStorageMode)mode
+//          completion:(void (^)(BOOL success, NSError *error))completion;
+
++ (void)deleteObjectUsingKey:(NSString *)key
+                        mode:(MASStorageMode)mode
+                  completion:(void (^)(BOOL success, NSError *error))completion;
+
+
+
+
+
 
 
 #pragma mark -

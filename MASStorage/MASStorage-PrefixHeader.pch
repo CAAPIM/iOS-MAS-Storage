@@ -15,7 +15,8 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
 #import <Foundation/Foundation.h>
-#import "MASStorageConstants.h"
+//#import "MASStorageConstants.h"
+#import <MASStorage/MASStorage.h>
 
 #endif /* MASStorage_PrefixHeader_pch */
 

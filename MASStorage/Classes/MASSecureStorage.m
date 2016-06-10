@@ -17,6 +17,144 @@
 @implementation MASSecureStorage
 
 
++ (void)findObjectUsingKey:(NSString *)key
+                      mode:(MASStorageMode)mode
+                completion:(void (^)(MASObject *object, NSError *error))completion
+{
+    //Check Networking
+    if ([MAS gatewayIsReachable]) {
+        
+        //Call Cloud Storage
+        [MASCloudStorage findObjectUsingKey:key mode:mode completion:^(MASObject *object, NSError *error) {
+            
+            if (!error) {
+                
+                //Sync to Local Storage
+                
+                
+            }else {
+                
+                //Return error
+                if (completion) completion(object,error);
+            }
+        }];
+    }
+    else {
+        
+        //Use Local Storage
+        NSLog(@"////////////////////////// \n USING LOCAL STORAGE \n //////////////////////////");
+        
+        [MASLocalStorage findObjectUsingKey:key mode:mode completion:completion];
+    }
+}
+
++ (void)findObjectsUsingMode:(MASStorageMode)mode
+                  completion:(void (^)(NSArray *objects, NSError *error))completion
+{
+    //Check Networking
+    if ([MAS gatewayIsReachable]) {
+        
+        //Call Cloud Storage
+        [MASCloudStorage findObjectsUsingMode:mode completion:^(NSArray *objects, NSError *error) {
+            
+            if (!error) {
+                
+                //Sync to Local Storage
+                
+                
+            }else {
+                
+                //Return error
+                if (completion) completion(nil,error);
+            }
+        }];
+    }
+    else {
+        
+        //Use Local Storage
+        NSLog(@"////////////////////////// \n USING LOCAL STORAGE \n //////////////////////////");
+        
+        [MASLocalStorage findObjectsUsingMode:mode completion:completion];
+    }
+}
+
+
++ (void)saveObject:(NSObject *)object
+           withKey:(NSString *)key
+              type:(NSString *)type
+              mode:(MASStorageMode)mode
+        completion:(void (^)(BOOL success, NSError *error))completion
+{
+    //Check Networking
+    if ([MAS gatewayIsReachable]) {
+        
+        //Call Cloud Storage
+        [MASCloudStorage saveObject:object withKey:key type:type mode:mode completion:^(BOOL success, NSError *error) {
+            
+            if (!error) {
+                
+                //Sync to Local Storage
+                
+                
+            }else {
+                
+                //Return error
+                if (completion) completion(NO,error);
+            }
+        }];
+    }
+    else {
+        
+        //Use Local Storage
+        NSLog(@"////////////////////////// \n USING LOCAL STORAGE \n //////////////////////////");
+        
+        [MASLocalStorage saveObject:object withKey:key type:type mode:mode completion:completion];
+    }
+}
+
+
++ (void)deleteObjectUsingKey:(NSString *)key
+                        mode:(MASStorageMode)mode
+                  completion:(void (^)(BOOL success, NSError *error))completion
+{
+    //Check Networking
+    if ([MAS gatewayIsReachable]) {
+        
+        //Call Cloud Storage
+        [MASCloudStorage deleteObjectUsingKey:key mode:mode completion:^(BOOL success, NSError *error) {
+            
+            if (!error) {
+                
+                //Sync to Local Storage
+                
+                
+            }else {
+                
+                //Return error
+                if (completion) completion(NO,error);
+            }
+        }];
+    }
+    else {
+        
+        //Use Local Storage
+        NSLog(@"////////////////////////// \n USING LOCAL STORAGE \n //////////////////////////");
+        
+        [MASLocalStorage deleteObjectUsingKey:key mode:mode completion:completion];
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 #pragma mark -
 # pragma mark ------ Local Storage ------
 

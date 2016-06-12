@@ -20,6 +20,9 @@ FOUNDATION_EXPORT const unsigned char MASStorageVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <MASStorage/PublicHeader.h>
 
 #import <MASStorage/MAS+LocalStorage.h>
-#import <MASStorage/MASObject+MASStorage.h>
-#import <MASStorage/MASSecureStorage.h>
+
+//#import <MASStorage/MASObject+MASStorage.h>
+//#import <MASStorage/MASSecureStorage.h>
+
+#import <MASStorage/MASCloudStorage.h>
 #import <MASStorage/MASStorageConstants.h>

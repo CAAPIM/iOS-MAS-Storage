@@ -196,6 +196,7 @@ static MASDatabase *_sharedDatabase = nil;
 
 # pragma mark - Find
 
+//Not been used
 - (void)findObjectsFromLocalStorageUsingTag:(NSString *)tag
                                  completion:(void (^)(NSArray *objects, NSError *error))completion
 {
@@ -304,7 +305,7 @@ static MASDatabase *_sharedDatabase = nil;
         //
         // Construct the query and empty prepared statement.
         //
-        NSString *querySQL = [NSString stringWithFormat:@"SELECT KEY, VALUE, TYPE, MODIFIED_DATE, CREATED_DATE, CREATED_BY FROM PROPERTIES WHERE KEY=\"%@\"", key];
+        NSString *querySQL = [NSString stringWithFormat:@"SELECT KEY, VALUE, TYPE, MODIFIED_DATE, CREATED_DATE, CREATED_BY, MODE FROM PROPERTIES WHERE KEY=\"%@\"", key];
         const char *query_stmt = [querySQL UTF8String];
         sqlite3_stmt *statement;
 
@@ -412,7 +413,7 @@ static MASDatabase *_sharedDatabase = nil;
         //
         // Construct the query and empty prepared statement.
         //
-        NSString *querySQL = @"SELECT KEY, VALUE, TYPE, MODIFIED_DATE, CREATED_DATE, CREATED_BY FROM PROPERTIES";
+        NSString *querySQL = @"SELECT KEY, VALUE, TYPE, MODIFIED_DATE, CREATED_DATE, CREATED_BY, MODE FROM PROPERTIES";
         const char *query_stmt = [querySQL UTF8String];
         sqlite3_stmt *statement;
         
@@ -496,6 +497,7 @@ static MASDatabase *_sharedDatabase = nil;
 - (void)saveToLocalStorageObject:(NSObject *)object
                          withKey:(NSString *)key
                          andType:(NSString *)type
+                            mode:(MASStorageMode)mode
                       completion:(void (^)(BOOL success, NSError *error))completion
 {
     NSParameterAssert(object);
@@ -510,7 +512,7 @@ static MASDatabase *_sharedDatabase = nil;
         //
         // Construct the query and empty prepared statement.
         //
-        NSString *querySQL = @"INSERT INTO PROPERTIES (KEY, VALUE, TYPE, MODIFIED_DATE) VALUES (?, ?, ?, ?)";
+        NSString *querySQL = @"INSERT INTO PROPERTIES (KEY, VALUE, TYPE, MODIFIED_DATE, CREATED_DATE, CREATED_BY, MODE) VALUES (?, ?, ?, ?, ?, ?, ?)";
         const char *save_stmt = [querySQL UTF8String];
         sqlite3_stmt *statement;
         
@@ -520,6 +522,7 @@ static MASDatabase *_sharedDatabase = nil;
         //
         NSData *objData = (NSData *)object;
         
+        NSString *created_by_stmt = [MASUser currentUser].objectId;
 
         //
         // Prepare the statement.
@@ -531,7 +534,10 @@ static MASDatabase *_sharedDatabase = nil;
             sqlite3_bind_blob(statement, 2, [objData bytes], (int)[objData length], SQLITE_STATIC);
             sqlite3_bind_text(statement, 3, [type UTF8String], (int)[type length], SQLITE_STATIC);
             sqlite3_bind_double(statement,4, [[NSDate date] timeIntervalSince1970]);
-        
+            sqlite3_bind_double(statement,5, [[NSDate date] timeIntervalSince1970]);
+            sqlite3_bind_text(statement,6, [created_by_stmt UTF8String], (int)[created_by_stmt length], SQLITE_STATIC);
+            sqlite3_bind_int(statement, 7, 1);
+            
             //
             // Execute the statement.
             //
@@ -589,6 +595,7 @@ static MASDatabase *_sharedDatabase = nil;
 - (void)updateToLocalStorageObject:(NSObject *)object
                            withKey:(NSString *)key
                            andType:(NSString *)type
+                              mode:(MASStorageMode)mode
                         completion:(void (^)(BOOL success, NSError *error))completion
 {
     NSParameterAssert(object);
@@ -603,7 +610,9 @@ static MASDatabase *_sharedDatabase = nil;
         //
         // Construct the query and empty prepared statement.
         //
-        NSString *querySQL = @"REPLACE INTO PROPERTIES (KEY, VALUE, TYPE, MODIFIED_DATE) VALUES (?, ?, ?, ?)";
+//        NSString *querySQL = [NSString stringWithFormat:@"REPLACE INTO PROPERTIES (KEY, VALUE, TYPE, MODIFIED_DATE, CREATED_DATE, CREATED_BY, MODE) VALUES (?, ?, ?, ?,(SELECT CREATED_DATE FROM PROPERTIES WHERE id = %@), ?, ?)",key];
+        
+        NSString *querySQL = @"UPDATE PROPERTIES SET VALUE = ?, TYPE = ?, MODIFIED_DATE = ? WHERE KEY = ?, MODE = ?";
         const char *update_stmt = [querySQL UTF8String];
         sqlite3_stmt *statement;
         
@@ -619,18 +628,30 @@ static MASDatabase *_sharedDatabase = nil;
         //
         if (sqlite3_prepare_v2(database, update_stmt, -1, &statement, NULL) == SQLITE_OK) {
             
-            // Bind the parameters (note that these use a 1-based index, not 0).
-            sqlite3_bind_text(statement, 1, [key UTF8String], (int)[key length], SQLITE_STATIC);
-            sqlite3_bind_blob(statement, 2, [objData bytes], (int)[objData length], SQLITE_STATIC);
-            sqlite3_bind_text(statement, 3, [type UTF8String], (int)[type length], SQLITE_STATIC);
-            sqlite3_bind_double(statement,4, [[NSDate date] timeIntervalSince1970]);
+//            // Bind the parameters (note that these use a 1-based index, not 0).
+//            sqlite3_bind_text(statement, 1, [key UTF8String], (int)[key length], SQLITE_STATIC);
+//            sqlite3_bind_blob(statement, 2, [objData bytes], (int)[objData length], SQLITE_STATIC);
+//            sqlite3_bind_text(statement, 3, [type UTF8String], (int)[type length], SQLITE_STATIC);
+//            sqlite3_bind_double(statement,4, [[NSDate date] timeIntervalSince1970]);
+//            sqlite3_bind_double(statement,5, [[NSDate date] timeIntervalSince1970]);
+//            sqlite3_bind_text(statement,6, [created_by_stmt UTF8String], (int)[created_by_stmt length], SQLITE_STATIC);
+//            sqlite3_bind_int(statement, 7, 1);
+            
+            
+            // UPDATE STATEMENT
+            sqlite3_bind_blob(statement, 1, [objData bytes], (int)[objData length], SQLITE_STATIC);
+            sqlite3_bind_text(statement, 2, [type UTF8String], (int)[type length], SQLITE_STATIC);
+            sqlite3_bind_double(statement,3, [[NSDate date] timeIntervalSince1970]);
+            sqlite3_bind_text(statement, 4, [key UTF8String], (int)[key length], SQLITE_STATIC);
+            sqlite3_bind_int(statement, 5, mode);
+            
             
             //
             // Execute the statement.
             //
             if (sqlite3_step(statement) == SQLITE_DONE) {
                 
-                DLog(@"success in executing SQLite3 REPLACE");
+                DLog(@"success in executing SQLite3 UPDATE");
                 
                 //
                 //Notification callback
@@ -692,8 +713,7 @@ static MASDatabase *_sharedDatabase = nil;
         if ([self openDB]) {
             
             char *errMsg;
-            //KEY VARCHAR PRIMARY KEY NOT NULL UNIQUE
-            const char *sql_stmt = "CREATE TABLE IF NOT EXISTS PROPERTIES (KEY VARCHAR PRIMARY KEY NOT NULL UNIQUE, VALUE BLOB, TYPE VARCHAR, MODIFIED_DATE DOUBLE, CREATED_DATE DOUBLE, CREATED_BY VARCHAR);";
+            const char *sql_stmt = "CREATE TABLE IF NOT EXISTS PROPERTIES (KEY VARCHAR NOT NULL UNIQUE, VALUE BLOB, TYPE VARCHAR, MODIFIED_DATE DOUBLE NOT NULL, CREATED_DATE DOUBLE NOT NULL, CREATED_BY VARCHAR, MODE INTEGER NOT NULL, PRIMARY KEY (KEY, MODE));";
             
             if (sqlite3_exec(database, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK) {
                 
@@ -709,6 +729,75 @@ static MASDatabase *_sharedDatabase = nil;
         
         DLog(@"ERROR in SQLite3 - COULD NOT OPEN DB");
     }
+    else {
+        
+        if ([self openDB]) {
+            
+            int currentVersion = [self getDatabaseUserVersion:database];
+            
+            //Verify the User Version
+            if (currentVersion != Database_User_Version) {
+                
+                //Update Database Schema with New Tables and/or Columns
+                [self alterDatabase];
+                
+                //Update Database User Version
+                [self setDatabaseUserVersion:Database_User_Version];
+            }
+        }
+
+    }
+}
+
+
+- (void)alterDatabase
+{
+    char *errMsg;
+    const char *sql_stmt;
+    
+//    sql_stmt = "ALTER TABLE PROPERTIES ADD COLUMN CREATED_DATE DOUBLE;";
+//    
+//    if (sqlite3_exec(database, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK) {
+//        
+//        DLog(@"SQLite3_exec problem");
+//        
+//        return;
+//    }
+//    else {
+//        
+//        DLog(@"Success in executing SQLite3 ALTER TABLE");
+//    }
+//
+//    sql_stmt = "ALTER TABLE PROPERTIES ADD COLUMN CREATED_BY VARCHAR;";
+//    
+//    if (sqlite3_exec(database, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK) {
+//        
+//        DLog(@"SQLite3_exec problem");
+//        
+//        return;
+//    }
+//    else {
+//        
+//        DLog(@"Success in executing SQLite3 ALTER TABLE");
+//    }
+    
+    sql_stmt = "ALTER TABLE PROPERTIES ADD COLUMN MODE INTEGER NOT NULL DEFAULT '1';";
+    
+    if (sqlite3_exec(database, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK) {
+        
+        DLog(@"SQLite3_exec problem");
+        
+        return;
+    }
+    else {
+        
+        DLog(@"Success in executing SQLite3 ALTER TABLE");
+    }
+
+    
+    
+    
+
 }
 
 
@@ -822,5 +911,97 @@ static MASDatabase *_sharedDatabase = nil;
     
     return path;
 }
+
+
+/**
+ *  Counts the number of column
+ *
+ *  @param tableName Database Table name
+ *
+ *  @return Number of column
+ */
+- (NSInteger)tableColumnCount:(NSString *)tableName
+{
+    NSString *query = [NSString stringWithFormat:@"PRAGMA table_info(%@)",tableName];
+    const char *query2 = [query UTF8String];
+    NSInteger nFields =0;
+    sqlite3_stmt *statement;
+    
+    if(sqlite3_prepare_v2(database, query2, -1, &statement, NULL) == SQLITE_OK) {
+        
+        while(sqlite3_step(statement) == SQLITE_ROW) {
+            
+            nFields++;
+            
+            sprintf("Column Name", "%s", sqlite3_column_text(statement, 1));
+            //do something with colName because it contains the column's name
+            
+            //returns the name
+            NSLog(@"Column name: %s",sqlite3_column_text(statement, 1));
+            
+            //returns the type
+            NSLog(@"Column name: %s",sqlite3_column_text(statement, 2));
+        }
+    }
+    
+    sqlite3_finalize(statement);
+    
+    return nFields;
+}
+
+
+/**
+ *  Return the Database User Version
+ *
+ *  @param db SQlite DB
+ *
+ *  @return User Version of the Database
+ */
+- (int)getDatabaseUserVersion:(sqlite3*)db
+{
+    static sqlite3_stmt *stmt_version;
+    int databaseVersion;
+    
+    if(sqlite3_prepare_v2(db, "PRAGMA user_version;", -1, &stmt_version, NULL) == SQLITE_OK) {
+        
+        while(sqlite3_step(stmt_version) == SQLITE_ROW) {
+            
+            databaseVersion = sqlite3_column_int(stmt_version, 0);
+        }
+        
+        DLog(@"%s: the Database Version is: %d", __FUNCTION__, databaseVersion);
+    }
+    else {
+    
+        NSLog(@"%s: ERROR Preparing: , %s", __FUNCTION__, sqlite3_errmsg(db) );
+    }
+    
+    sqlite3_finalize(stmt_version);
+    
+    return databaseVersion;
+}
+
+- (BOOL)setDatabaseUserVersion:(int)version
+{
+    //Update Database User Version
+    char *errMsg;
+    NSString *querySQL = [NSString stringWithFormat:@"PRAGMA user_version = %d",version];
+    const char *sql_stmt = [querySQL UTF8String];
+    
+    if (sqlite3_exec(database, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK) {
+        
+        DLog(@"SQLite3_exec problem");
+        
+        return NO;
+    }
+    else {
+        
+        DLog(@"Success in executing SQLite3 UPDATING DATABASE USER VERSION");
+    }
+    
+    return YES;
+
+}
+
 
 @end

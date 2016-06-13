@@ -14,6 +14,9 @@
 
 #endif /* MASStorageConstants_h */
 
+static int const Database_User_Version = 2;
+
+
 /**
  *  Storage Modes
  */

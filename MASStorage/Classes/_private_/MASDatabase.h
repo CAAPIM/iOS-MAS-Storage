@@ -90,12 +90,14 @@ static NSString * const MASStorageOperationDidSaveToLocalStorageNotification = @
  *
  *  @param object     Object to be saved. It must conform to NSObject.
  *  @param key        Key to be used when saving the object.
- *  @param tag        Tag to be used when saving the object.
+ *  @param type       Type of the object been saved.
+ *  @param mode       The MASStorageMode to be used in the search.
  *  @param completion The standard (BOOL success, NSError *error) completion block.
  */
 - (void)saveToLocalStorageObject:(NSObject *)object
                          withKey:(NSString *)key
                          andType:(NSString *)type
+                            mode:(MASStorageMode)mode
                       completion:(void (^)(BOOL success, NSError *error))completion;
 
 
@@ -106,12 +108,14 @@ static NSString * const MASStorageOperationDidSaveToLocalStorageNotification = @
  *
  *  @param object     Object to be saved. It must conform to NSObject.
  *  @param key        Key to be used when saving the object.
- *  @param tag        Tag to be used when saving the object.
+ *  @param type       Type of the object been saved.
+ *  @param mode       The MASStorageMode to be used in the search.
  *  @param completion The standard (BOOL success, NSError *error) completion block.
  */
 - (void)updateToLocalStorageObject:(NSObject *)object
                            withKey:(NSString *)key
                            andType:(NSString *)type
+                              mode:(MASStorageMode)mode
                         completion:(void (^)(BOOL success, NSError *error))completion;
 
 

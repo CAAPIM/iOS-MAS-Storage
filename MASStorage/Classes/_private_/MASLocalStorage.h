@@ -55,6 +55,7 @@
                   completion:(void (^)(NSArray *objects, NSError *error))completion;
 
 
+
 #pragma mark - Save/Update method
 
 /**
@@ -92,6 +93,7 @@
         completion:(void (^)(BOOL success, NSError *error))completion;
 
 
+
 #pragma mark - Delete methods
 
 /**
@@ -116,105 +118,5 @@
 + (void)deleteAllObjectsUsingMode:(MASStorageMode)mode
                        completion:(void (^)(BOOL success, NSError *error))completion;
 
-
-//# pragma mark - Delete
-//
-///**
-// *  Delete ALL objects from local storage.
-// *
-// *  @param completion The standard (BOOL success, NSError *error) completion block.
-// */
-//+ (void)deleteAllObjectsFromLocalStorageWithCompletion:(void (^)(BOOL success, NSError *error))completion;
-//
-//
-///**
-// *  Delete an object from Local Storage based on a given key.
-// *
-// *  @param key        The key used to delete the object from the storage.
-// *  @param completion The standard (BOOL success, NSError *error) completion block.
-// */
-//+ (void)deleteObjectFromLocalStorageUsingKey:(NSString *)key
-//                                  completion:(void (^)(BOOL success, NSError *error))completion;
-//
-//
-//# pragma mark - Find
-//
-///**
-// *  Find objects in Local Storage based on a tag.
-// *
-// *  @param tag        The tag used to find objects from local storage.
-// *  @param completion A (NSArray *objects, NSError *error) completion block.
-// */
-//+ (void)findObjectsFromLocalStorageUsingTag:(NSString *)tag
-//                                 completion:(void (^)(NSArray *objects, NSError *error))completion;
-//
-//
-//# pragma mark - Get
-//
-///**
-// *  Get an object from Local Storage based on a specific key.
-// *
-// *  @param key        The key used to get the object from local storage.
-// *  @param completion A (MASObject *object, NSError *error) completion block.
-// */
-//+ (void)getObjectFromLocalStorageUsingKey:(NSString *)key
-//                               completion:(void (^)(MASObject *object, NSError *error))completion;
-//
-//
-//
-///**
-// *  Get all objects from Local Storage.
-// *
-// *  @param completion A (NSArray *objects, NSError *error) completion block.
-// */
-//+ (void)getObjectsFromLocalStorageCompletion:(void (^)(NSArray *objects, NSError *error))completion;
-//
-//
-//# pragma mark - Save
-//
-///**
-// *  Save an object into Local Storage.
-// *
-// *  @param object     Object to be saved. It must conform to NSObject.
-// *  @param key        Key to be used when saving the object.
-// *  @param type       Type of the object been saved.
-// *  @param completion The standard (BOOL success, NSError *error) completion block.
-// */
-//+ (void)saveToLocalStorageObject:(NSObject *)object
-//                         withKey:(NSString *)key
-//                         andType:(NSString *)type
-//                      completion:(void (^)(BOOL success, NSError *error))completion;
-//
-//
-///**
-// *  Save an object with encryption to Local Storage.
-// *
-// *  @param object     Object to be saved. It must conform to NSObject.
-// *  @param key        Key to be used when saving the object.
-// *  @param type       Type of the Object been saved.
-// *  @param password   Password used for encryption.
-// *  @param completion The standard (BOOL success, NSError *error) completion block.
-// */
-//+ (void)saveToLocalStorageObject:(NSObject *)object
-//                         withKey:(NSString *)key
-//                            type:(NSString *)type
-//           passwordForEncryption:(NSString *)password
-//                      completion:(void (^)(BOOL success, NSError *error))completion;
-//
-//
-//# pragma mark - Update
-//
-///**
-// *  Update an object into Local Storage.
-// *
-// *  @param object     Object to be saved. It must conform to NSObject.
-// *  @param key        Key to be used when saving the object.
-// *  @param type       Type of the object been saved.
-// *  @param completion The standard (BOOL success, NSError *error) completion block.
-// */
-//+ (void)updateToLocalStorageObject:(NSObject *)object
-//                           withKey:(NSString *)key
-//                           andType:(NSString *)type
-//                        completion:(void (^)(BOOL success, NSError *error))completion;
 
 @end

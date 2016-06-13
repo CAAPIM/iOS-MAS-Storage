@@ -266,29 +266,23 @@ MASLocalStorage *_sharedStorage = nil;
     //
     //MASDatabase Save method
     //
-    [[MASDatabase sharedDatabase] saveToLocalStorageObject:encodeData withKey:key andType:type completion:^(BOOL success, NSError *error) {
+    [[MASDatabase sharedDatabase] saveToLocalStorageObject:encodeData withKey:key andType:type mode:mode completion:^(BOOL success, NSError *error) {
         
-        if (completion) {
+        if (success) {
+
+            if (completion) completion(success,error);
+        }
+        else {
             
-            completion(success,error);
+            //
+            // Call Update
+            //
+            [[MASDatabase sharedDatabase] updateToLocalStorageObject:encodeData withKey:key andType:type mode:mode completion:^(BOOL success, NSError *error) {
+                
+                if (completion) completion(success,error);
+            }];
         }
     }];
-    
-    /*
-     //
-     //MASDatabase Save method
-     //
-     [[MASDatabase sharedDatabase] updateToLocalStorageObject:encodeData withKey:key andType:type completion:^(BOOL success, NSError *error) {
-     
-     if (completion) {
-     
-     completion(success,error);
-     }
-     }];
-
-     
-     
-     */
 }
 
 
@@ -379,11 +373,21 @@ MASLocalStorage *_sharedStorage = nil;
     //
     //MASDatabase Save method
     //
-    [[MASDatabase sharedDatabase] saveToLocalStorageObject:encryptedData withKey:key andType:type completion:^(BOOL success, NSError *error) {
+    [[MASDatabase sharedDatabase] saveToLocalStorageObject:encryptedData withKey:key andType:type mode:mode completion:^(BOOL success, NSError *error) {
         
-        if (completion) {
+        if (success) {
             
-            completion(success,error);
+            if (completion) completion(success,error);
+        }
+        else {
+            
+            //
+            // Call Update
+            //
+            [[MASDatabase sharedDatabase] updateToLocalStorageObject:encodeData withKey:key andType:type mode:mode completion:^(BOOL success, NSError *error) {
+                
+                if (completion) completion(success,error);
+            }];
         }
     }];
 }

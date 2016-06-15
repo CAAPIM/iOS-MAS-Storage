@@ -105,7 +105,7 @@ MASLocalStorage *_sharedStorage = nil;
     //
     // MASDatabase Get method
     //
-    [[MASDatabase sharedDatabase] getObjectFromLocalStorageUsingKey:key completion:^(NSDictionary *response, NSError *error) {
+    [[MASDatabase sharedDatabase] findObjectUsingKey:key mode:mode completion:^(NSDictionary *response, NSError *error) {
         
         if (!error) {
             
@@ -152,18 +152,10 @@ MASLocalStorage *_sharedStorage = nil;
         return;
     }
     
-    //TODO
-    //***********************
-    //
-    // Validate the StorageMode. If MASStorageModeApplicationForUser, check the current user Id
-    // with the one in the data returned.
-    //
-    //***********************
-    
     //
     // MASDatabase Get method
     //
-    [[MASDatabase sharedDatabase] getObjectsFromLocalStorageCompletion:^(NSArray *objects, NSError *error) {
+    [[MASDatabase sharedDatabase] findObjectsUsingMode:mode completion:^(NSArray *objects, NSError *error) {
         
         DLog(@"(MASLocalStorage getObjects) received response info:\n\n%@\n\n", objects);
         

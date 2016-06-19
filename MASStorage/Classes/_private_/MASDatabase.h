@@ -37,7 +37,10 @@ static NSString * const MASStorageOperationDidSaveToLocalStorageNotification = @
  *
  *  @param completion The standard (BOOL success, NSError *error) completion block.
  */
-- (void)deleteAllObjectsFromLocalStorageWithCompletion:(void (^)(BOOL success, NSError *error))completion;
+//- (void)deleteAllObjectsFromLocalStorageWithCompletion:(void (^)(BOOL success, NSError *error))completion;
+- (void)deleteAllObjectsUsingMode:(MASStorageMode)mode
+                       completion:(void (^)(BOOL success, NSError *error))completion;
+
 
 
 /**
@@ -46,24 +49,16 @@ static NSString * const MASStorageOperationDidSaveToLocalStorageNotification = @
  *  @param key        The Key used to delete the object from local storage.
  *  @param completion The standard (BOOL success, NSError *error) completion block.
  */
-- (void)deleteObjectFromLocalStorageUsingKey:(NSString *)key
-                                  completion:(void (^)(BOOL success, NSError *error))completion;
+- (void)deleteObjectUsingKey:(NSString *)key
+                        mode:(MASStorageMode)mode
+                  completion:(void (^)(BOOL success, NSError *error))completion;
+//- (void)deleteObjectFromLocalStorageUsingKey:(NSString *)key
+//                                  completion:(void (^)(BOOL success, NSError *error))completion;
+
 
 
 # pragma mark - Find
 
-//Not been Used
-/**
- *  Find object(s) from local storage based on a given tag.
- *
- *  @param tag        The Tag used to get the object(s) from local storage.
- *  @param completion A (NSArray *objects, NSError *error) completion block. 
- */
-//- (void)findObjectsFromLocalStorageUsingTag:(NSString *)tag
-//                                 completion:(void (^)(NSArray *objects, NSError *error))completion;
-
-
-# pragma mark - Get
 
 /**
  *  Get an object from local storage based in a giving key.
@@ -71,9 +66,6 @@ static NSString * const MASStorageOperationDidSaveToLocalStorageNotification = @
  *  @param key        The Key used to get the object from local storage.
  *  @param completion A (NSDictionary *response, NSError *error) completion block.
  */
-//- (void)getObjectFromLocalStorageUsingKey:(NSString *)key
-//                               completion:(void (^)(NSDictionary *response, NSError *error))completion;
-
 - (void)findObjectUsingKey:(NSString *)key
                       mode:(MASStorageMode)mode
                 completion:(void (^)(NSDictionary *response, NSError *error))completion;
@@ -85,10 +77,9 @@ static NSString * const MASStorageOperationDidSaveToLocalStorageNotification = @
  *
  *  @param completion A (NSArray *objects, NSError *error) completion block.
  */
-//- (void)getObjectsFromLocalStorageCompletion:(void (^)(NSArray *objects, NSError *error))completion;
-
 - (void)findObjectsUsingMode:(MASStorageMode)mode
                   completion:(void (^)(NSArray *objects, NSError *error))completion;
+
 
 
 # pragma mark - Save
@@ -109,7 +100,9 @@ static NSString * const MASStorageOperationDidSaveToLocalStorageNotification = @
                       completion:(void (^)(BOOL success, NSError *error))completion;
 
 
+
 # pragma mark - Update
+
 
 /**
  *  Update an object into local storage.

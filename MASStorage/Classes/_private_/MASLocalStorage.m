@@ -411,18 +411,10 @@ MASLocalStorage *_sharedStorage = nil;
         return;
     }
     
-    //TODO
-    //***********************
-    //
-    // Validate the StorageMode. If MASStorageModeApplicationForUser, check the current user Id
-    // with the one in the data returned. Send the UserId to the Database method to be used in the Query
-    //
-    //***********************
-
     //
     //MASDatabase Delete method
     //
-    [[MASDatabase sharedDatabase] deleteObjectFromLocalStorageUsingKey:key completion:^(BOOL success, NSError *error) {
+    [[MASDatabase sharedDatabase] deleteObjectUsingKey:key mode:mode completion:^(BOOL success, NSError *error) {
         
         if (completion) {
             
@@ -452,20 +444,12 @@ MASLocalStorage *_sharedStorage = nil;
         return;
     }
     
-    //TODO
-    //***********************
-    //
-    // Validate the StorageMode. If MASStorageModeApplicationForUser, check the current user Id
-    // with the one in the data returned. Send the UserId to the Database method to be used in the Query
-    //
-    //***********************
-    
     //
     // Execute on MASDatabase
     //
-    [[MASDatabase sharedDatabase] deleteAllObjectsFromLocalStorageWithCompletion:^(BOOL success, NSError *error)
-     {
-         if (completion) completion(success, error);
+    [[MASDatabase sharedDatabase] deleteAllObjectsUsingMode:mode completion:^(BOOL success, NSError *error) {
+
+        if (completion) completion(success, error);
      }];
 }
 

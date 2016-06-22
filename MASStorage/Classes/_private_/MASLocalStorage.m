@@ -20,6 +20,7 @@
 static void *masDatabasePropertyKey;
 
 
+
 @interface MASLocalStorage ()
 
 extern MASLocalStorage *_sharedStorage;
@@ -71,7 +72,7 @@ MASLocalStorage *_sharedStorage = nil;
 #pragma mark - Find methods
 
 + (void)findObjectUsingKey:(NSString *)key
-                      mode:(MASStorageMode)mode
+                      mode:(MASLocalStorageSegment)mode
                 completion:(void (^)(MASObject *object, NSError *error))completion
 {
     NSParameterAssert(key);
@@ -94,14 +95,6 @@ MASLocalStorage *_sharedStorage = nil;
         return;
     }
     
-    //TODO
-    //***********************
-    //
-    // Validate the StorageMode. If MASStorageModeApplicationForUser, check the current user Id
-    // with the one in the data returned.
-    //
-    //***********************
-
     //
     // MASDatabase Get method
     //
@@ -131,7 +124,7 @@ MASLocalStorage *_sharedStorage = nil;
 }
 
 
-+ (void)findObjectsUsingMode:(MASStorageMode)mode
++ (void)findObjectsUsingMode:(MASLocalStorageSegment)mode
                   completion:(void (^)(NSArray *objects, NSError *error))completion
 {
     //
@@ -196,7 +189,7 @@ MASLocalStorage *_sharedStorage = nil;
 + (void)saveObject:(NSObject *)object
            withKey:(NSString *)key
               type:(NSString *)type
-              mode:(MASStorageMode)mode
+              mode:(MASLocalStorageSegment)mode
         completion:(void (^)(BOOL success, NSError *error))completion
 {
     NSParameterAssert(object);
@@ -246,15 +239,6 @@ MASLocalStorage *_sharedStorage = nil;
         return;
     }
     
-    //TODO
-    //***********************
-    //
-    // Validate the StorageMode. If MASStorageModeApplicationForUser, check the current user Id
-    // with the one in the data returned. Send the UserId to the Database method to be used in the Query
-    //
-    //***********************
-    
-    
     //
     //MASDatabase Save method
     //
@@ -281,7 +265,7 @@ MASLocalStorage *_sharedStorage = nil;
 + (void)saveObject:(NSObject *)object
            withKey:(NSString *)key
               type:(NSString *)type
-              mode:(MASStorageMode)mode
+              mode:(MASLocalStorageSegment)mode
           password:(NSString *)password
         completion:(void (^)(BOOL success, NSError *error))completion
 {
@@ -354,14 +338,6 @@ MASLocalStorage *_sharedStorage = nil;
         return;
     }
     
-    //TODO
-    //***********************
-    //
-    // Validate the StorageMode. If MASStorageModeApplicationForUser, check the current user Id
-    // with the one in the data returned. Send the UserId to the Database method to be used in the Query
-    //
-    //***********************
-    
     //
     //MASDatabase Save method
     //
@@ -388,7 +364,7 @@ MASLocalStorage *_sharedStorage = nil;
 #pragma mark - Delete methods
 
 + (void)deleteObjectUsingKey:(NSString *)key
-                        mode:(MASStorageMode)mode
+                        mode:(MASLocalStorageSegment)mode
                   completion:(void (^)(BOOL success, NSError *error))completion
 {
     NSParameterAssert(key);
@@ -423,7 +399,7 @@ MASLocalStorage *_sharedStorage = nil;
     }];
 }
 
-+ (void)deleteAllObjectsUsingMode:(MASStorageMode)mode
++ (void)deleteAllObjectsUsingMode:(MASLocalStorageSegment)mode
                        completion:(void (^)(BOOL success, NSError *error))completion
 {
     //

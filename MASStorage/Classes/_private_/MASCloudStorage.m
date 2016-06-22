@@ -20,7 +20,7 @@
 #pragma mark - Public methods
 
 + (void)findObjectUsingKey:(NSString *)key
-                      mode:(MASStorageMode)mode
+                      mode:(MASCloudStorageSegment)mode
                 completion:(void (^)(MASObject *object, NSError *error))completion
 {
     NSString *pathURL;
@@ -28,7 +28,7 @@
 
     switch (mode) {
             
-        case MASStorageModeApplication:
+        case MASCloudStorageSegmentApplication:
         {
             DLog(@"Application Mode");
             
@@ -41,7 +41,7 @@
         }
             
             
-        case MASStorageModeApplicationForUser:
+        case MASCloudStorageSegmentApplicationForUser:
         {
             DLog(@"Application for User Mode");
 
@@ -53,7 +53,7 @@
             break;
         }
 
-        case MASStorageModeUser:
+        case MASCloudStorageSegmentUser:
         {
             DLog(@"User Mode");
             
@@ -82,7 +82,7 @@
 }
 
 
-+ (void)findObjectsUsingMode:(MASStorageMode)mode
++ (void)findObjectsUsingMode:(MASCloudStorageSegment)mode
                   completion:(void (^)(NSArray *objects, NSError *error))completion
 {
     NSString *pathURL;
@@ -90,7 +90,7 @@
 
     switch (mode) {
             
-        case MASStorageModeApplication:
+        case MASCloudStorageSegmentApplication:
         {
             DLog(@"Application Mode");
             
@@ -103,7 +103,7 @@
         }
             
             
-        case MASStorageModeApplicationForUser:
+        case MASCloudStorageSegmentApplicationForUser:
         {
             DLog(@"Application for User Mode");
             
@@ -115,7 +115,7 @@
             break;
         }
             
-        case MASStorageModeUser:
+        case MASCloudStorageSegmentUser:
         {
             DLog(@"User Mode");
             
@@ -148,7 +148,7 @@
 + (void)saveObject:(NSObject *)object
            withKey:(NSString *)key
               type:(NSString *)type
-              mode:(MASStorageMode)mode
+              mode:(MASCloudStorageSegment)mode
         completion:(void (^)(BOOL success, NSError *error))completion
 {
     NSString *pathURL;
@@ -156,7 +156,7 @@
 
     switch (mode) {
             
-        case MASStorageModeApplication:
+        case MASCloudStorageSegmentApplication:
         {
             DLog(@"Application Mode");
             
@@ -169,7 +169,7 @@
         }
             
             
-        case MASStorageModeApplicationForUser:
+        case MASCloudStorageSegmentApplicationForUser:
         {
             DLog(@"Application for User Mode");
             
@@ -181,7 +181,7 @@
             break;
         }
             
-        case MASStorageModeUser:
+        case MASCloudStorageSegmentUser:
         {
             DLog(@"User Mode");
             
@@ -211,7 +211,7 @@
 
 
 + (void)deleteObjectUsingKey:(NSString *)key
-                        mode:(MASStorageMode)mode
+                        mode:(MASCloudStorageSegment)mode
                   completion:(void (^)(BOOL success, NSError *error))completion
 {
     NSString *pathURL;
@@ -219,7 +219,7 @@
 
     switch (mode) {
             
-        case MASStorageModeApplication:
+        case MASCloudStorageSegmentApplication:
         {
             DLog(@"Application Mode");
             
@@ -232,7 +232,7 @@
         }
             
             
-        case MASStorageModeApplicationForUser:
+        case MASCloudStorageSegmentApplicationForUser:
         {
             DLog(@"Application for User Mode");
             
@@ -244,7 +244,7 @@
             break;
         }
             
-        case MASStorageModeUser:
+        case MASCloudStorageSegmentUser:
         {
             DLog(@"User Mode");
             

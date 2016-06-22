@@ -11,6 +11,24 @@
 #import <Foundation/Foundation.h>
 #import <MASFoundation/MASFoundation.h>
 
+/**
+ *  Cloud Storage Segment
+ */
+typedef NS_ENUM(NSInteger, MASLocalStorageSegment) {
+    /**
+     *  Unknown Mode
+     */
+    MASLocalStorageSegmentUnknown = -1,
+    /**
+     *  Data in this mode is stored and available in an Application Level
+     */
+    MASLocalStorageSegmentApplication,
+    /**
+     *  Data in this mode is stored and available in an Application for a specific User
+     */
+    MASLocalStorageSegmentApplicationForUser
+};
+
 
 /**
  *  This class exposes Local Storage features
@@ -40,7 +58,7 @@
  *  @param completion A (MASObject *object, NSError *error) completion block
  */
 + (void)findObjectUsingKey:(NSString *)key
-                      mode:(MASStorageMode)mode
+                      mode:(MASLocalStorageSegment)mode
                 completion:(void (^)(MASObject *object, NSError *error))completion;
 
 
@@ -51,7 +69,7 @@
  *  @param mode       The MASStorageMode to be used in the search
  *  @param completion A (NSArray *objects, NSError *error) completion block
  */
-+ (void)findObjectsUsingMode:(MASStorageMode)mode
++ (void)findObjectsUsingMode:(MASLocalStorageSegment)mode
                   completion:(void (^)(NSArray *objects, NSError *error))completion;
 
 
@@ -70,7 +88,7 @@
 + (void)saveObject:(NSObject *)object
            withKey:(NSString *)key
               type:(NSString *)type
-              mode:(MASStorageMode)mode
+              mode:(MASLocalStorageSegment)mode
         completion:(void (^)(BOOL success, NSError *error))completion;
 
 
@@ -88,7 +106,7 @@
 + (void)saveObject:(NSObject *)object
            withKey:(NSString *)key
               type:(NSString *)type
-              mode:(MASStorageMode)mode
+              mode:(MASLocalStorageSegment)mode
           password:(NSString *)password
         completion:(void (^)(BOOL success, NSError *error))completion;
 
@@ -104,7 +122,7 @@
  *  @param completion The standard (BOOL success, NSError *error) completion block
  */
 + (void)deleteObjectUsingKey:(NSString *)key
-                        mode:(MASStorageMode)mode
+                        mode:(MASLocalStorageSegment)mode
                   completion:(void (^)(BOOL success, NSError *error))completion;
 
 
@@ -115,7 +133,7 @@
  *  @param mode       The MASStorageMode to be used in the search
  *  @param completion The standard (BOOL success, NSError *error) completion block
  */
-+ (void)deleteAllObjectsUsingMode:(MASStorageMode)mode
++ (void)deleteAllObjectsUsingMode:(MASLocalStorageSegment)mode
                        completion:(void (^)(BOOL success, NSError *error))completion;
 
 

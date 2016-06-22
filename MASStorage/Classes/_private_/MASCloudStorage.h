@@ -13,6 +13,29 @@
 #import "MASStorageConstants.h"
 
 /**
+ *  Cloud Storage Segment
+ */
+typedef NS_ENUM(NSInteger, MASCloudStorageSegment) {
+    /**
+     *  Unknown Mode
+     */
+    MASCloudStorageSegmentUnknown = -1,
+    /**
+     *  Data in this mode is stored and available to a specific User ONLY
+     */
+    MASCloudStorageSegmentUser,
+    /**
+     *  Data in this mode is stored and available in an Application Level
+     */
+    MASCloudStorageSegmentApplication,
+    /**
+     *  Data in this mode is stored and available in an Application for a specific User
+     */
+    MASCloudStorageSegmentApplicationForUser
+};
+
+
+/**
  *  This class exposes Cloud Storage features
  */
 @interface MASCloudStorage : NSObject
@@ -28,7 +51,7 @@
  *  @param completion A (MASObject *object, NSError *error) completion block
  */
 + (void)findObjectUsingKey:(NSString *)key
-                      mode:(MASStorageMode)mode
+                      mode:(MASCloudStorageSegment)mode
                 completion:(void (^)(MASObject *object, NSError *error))completion;
 
 
@@ -39,7 +62,7 @@
  *  @param mode       The MASStorageMode to be used in the search
  *  @param completion A (NSArray *objects, NSError *error) completion block
  */
-+ (void)findObjectsUsingMode:(MASStorageMode)mode
++ (void)findObjectsUsingMode:(MASCloudStorageSegment)mode
                   completion:(void (^)(NSArray *objects, NSError *error))completion;
 
 
@@ -58,7 +81,7 @@
 + (void)saveObject:(NSObject *)object
            withKey:(NSString *)key
               type:(NSString *)type
-              mode:(MASStorageMode)mode
+              mode:(MASCloudStorageSegment)mode
         completion:(void (^)(BOOL success, NSError *error))completion;
 
 
@@ -73,7 +96,7 @@
  *  @param completion The standard (BOOL success, NSError *error) completion block
  */
 + (void)deleteObjectUsingKey:(NSString *)key
-                        mode:(MASStorageMode)mode
+                        mode:(MASCloudStorageSegment)mode
                   completion:(void (^)(BOOL success, NSError *error))completion;
 
 @end

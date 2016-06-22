@@ -23,7 +23,7 @@ typedef NS_ENUM (NSUInteger, MASStorageError)
     MASStorageErrorOpenLocalStorage = 103,
     MASStorageErrorDeleteLocalStorage = 104,
     MASStorageErrorDeleteAllLocalStorage = 105,
-    MASStorageErrorFindFromLocalStorage = 106
+    MASStorageErrorFindFromLocalStorage = 106,
 };
 
 
@@ -67,7 +67,7 @@ static MASDatabase *_sharedDatabase = nil;
 
 # pragma mark - Delete
 
-- (void)deleteAllObjectsUsingMode:(MASStorageMode)mode
+- (void)deleteAllObjectsUsingMode:(MASLocalStorageSegment)mode
                        completion:(void (^)(BOOL success, NSError *error))completion
 {
     //
@@ -131,11 +131,23 @@ static MASDatabase *_sharedDatabase = nil;
 
 
 - (void)deleteObjectUsingKey:(NSString *)key
-                        mode:(MASStorageMode)mode
+                        mode:(MASLocalStorageSegment)mode
                   completion:(void (^)(BOOL success, NSError *error))completion
 {
     NSParameterAssert(key);
     
+    if (mode != MASLocalStorageSegmentApplication && ![MASUser currentUser].objectId) {
+        
+        NSString *message = NSLocalizedString(@"Unauthenticated user", @"unauthenticated user");
+        NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
+                                                      code:MASStorageErrorFindFromLocalStorage
+                                                  userInfo:@{ NSLocalizedDescriptionKey : message }];
+        
+        if (completion) completion(nil,localizedError);
+        
+        return;
+    }
+
     //
     // Open DB
     //
@@ -144,7 +156,22 @@ static MASDatabase *_sharedDatabase = nil;
         //
         // Construct the query and empty prepared statement
         //
-        NSString *deleteSQL = [NSString stringWithFormat:@"DELETE FROM PROPERTIES WHERE KEY=\"%@\" AND MODE=%ld", key, (long)mode];
+        NSString *deleteSQL;
+        NSString *currentUserId = [MASUser currentUser].objectId;
+        
+        switch (mode) {
+                
+            case MASLocalStorageSegmentApplication:
+                
+                deleteSQL = [NSString stringWithFormat:@"DELETE FROM PROPERTIES WHERE KEY=\"%@\" AND MODE=%ld", key, (long)mode];
+                break;
+                
+            default:
+                
+                deleteSQL = [NSString stringWithFormat:@"DELETE FROM PROPERTIES WHERE KEY=\"%@\" AND MODE=%ld AND CREATED_BY=\"%@\"", key, (long)mode, currentUserId];
+                break;
+        }
+        
         const char *delete_stmt = [deleteSQL UTF8String];
         sqlite3_stmt *statement;
 
@@ -199,11 +226,23 @@ static MASDatabase *_sharedDatabase = nil;
 # pragma mark - Find
 
 - (void)findObjectUsingKey:(NSString *)key
-                      mode:(MASStorageMode)mode
+                      mode:(MASLocalStorageSegment)mode
                 completion:(void (^)(NSDictionary *response, NSError *error))completion
 {
     NSParameterAssert(key);
     
+    if (mode != MASLocalStorageSegmentApplication && ![MASUser currentUser].objectId) {
+        
+        NSString *message = NSLocalizedString(@"Unauthenticated user", @"unauthenticated user");
+        NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
+                                                      code:MASStorageErrorFindFromLocalStorage
+                                                  userInfo:@{ NSLocalizedDescriptionKey : message }];
+        
+        if (completion) completion(nil,localizedError);
+        
+        return;
+    }
+
     //
     // Open DB
     //
@@ -217,7 +256,7 @@ static MASDatabase *_sharedDatabase = nil;
         
         switch (mode) {
                 
-            case MASStorageModeApplication:
+            case MASLocalStorageSegmentApplication:
                 
                 querySQL = [NSString stringWithFormat:@"SELECT KEY, VALUE, TYPE, MODIFIED_DATE, CREATED_DATE, CREATED_BY, MODE FROM PROPERTIES WHERE MODE=%ld AND KEY=\"%@\"", (long)mode,key];
                 break;
@@ -323,10 +362,22 @@ static MASDatabase *_sharedDatabase = nil;
     
 }
 
-- (void)findObjectsUsingMode:(MASStorageMode)mode
+- (void)findObjectsUsingMode:(MASLocalStorageSegment)mode
                   completion:(void (^)(NSArray *objects, NSError *error))completion
 {
     NSMutableArray *returnArray = [[NSMutableArray alloc] init];
+    
+    if (mode != MASLocalStorageSegmentApplication && ![MASUser currentUser].objectId) {
+
+        NSString *message = NSLocalizedString(@"Unauthenticated user", @"unauthenticated user");
+        NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
+                                                      code:MASStorageErrorFindFromLocalStorage
+                                                  userInfo:@{ NSLocalizedDescriptionKey : message }];
+        
+        if (completion) completion(nil,localizedError);
+        
+        return;
+    }
     
     //
     // Open DB
@@ -341,7 +392,7 @@ static MASDatabase *_sharedDatabase = nil;
         
         switch (mode) {
                 
-            case MASStorageModeApplication:
+            case MASLocalStorageSegmentApplication:
                 
                 querySQL = [NSString stringWithFormat:@"SELECT KEY, VALUE, TYPE, MODIFIED_DATE, CREATED_DATE, CREATED_BY, MODE FROM PROPERTIES WHERE MODE=%ld", (long)mode];
                 break;
@@ -435,12 +486,24 @@ static MASDatabase *_sharedDatabase = nil;
 - (void)saveToLocalStorageObject:(NSObject *)object
                          withKey:(NSString *)key
                          andType:(NSString *)type
-                            mode:(MASStorageMode)mode
+                            mode:(MASLocalStorageSegment)mode
                       completion:(void (^)(BOOL success, NSError *error))completion
 {
     NSParameterAssert(object);
     NSParameterAssert(key);
     NSParameterAssert(type);
+
+    if (mode != MASLocalStorageSegmentApplication && ![MASUser currentUser].objectId) {
+        
+        NSString *message = NSLocalizedString(@"Unauthenticated user", @"unauthenticated user");
+        NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
+                                                      code:MASStorageErrorFindFromLocalStorage
+                                                  userInfo:@{ NSLocalizedDescriptionKey : message }];
+        
+        if (completion) completion(nil,localizedError);
+        
+        return;
+    }
 
     //
     // Open DB
@@ -533,13 +596,25 @@ static MASDatabase *_sharedDatabase = nil;
 - (void)updateToLocalStorageObject:(NSObject *)object
                            withKey:(NSString *)key
                            andType:(NSString *)type
-                              mode:(MASStorageMode)mode
+                              mode:(MASLocalStorageSegment)mode
                         completion:(void (^)(BOOL success, NSError *error))completion
 {
     NSParameterAssert(object);
     NSParameterAssert(key);
     NSParameterAssert(type);
     
+    if (mode != MASLocalStorageSegmentApplication && ![MASUser currentUser].objectId) {
+        
+        NSString *message = NSLocalizedString(@"Unauthenticated user", @"unauthenticated user");
+        NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
+                                                      code:MASStorageErrorFindFromLocalStorage
+                                                  userInfo:@{ NSLocalizedDescriptionKey : message }];
+        
+        if (completion) completion(nil,localizedError);
+        
+        return;
+    }
+
     //
     // Open DB
     //
@@ -548,7 +623,22 @@ static MASDatabase *_sharedDatabase = nil;
         //
         // Construct the query and empty prepared statement.
         //
-        NSString *querySQL = @"UPDATE PROPERTIES SET VALUE = ?, TYPE = ?, MODIFIED_DATE = ? WHERE KEY = ? AND MODE = ?";
+        NSString *querySQL;
+        NSString *currentUserId = [MASUser currentUser].objectId;
+        
+        switch (mode) {
+                
+            case MASLocalStorageSegmentApplication:
+                
+                querySQL = [NSString stringWithFormat:@"UPDATE PROPERTIES SET VALUE = ?, TYPE = ?, MODIFIED_DATE = ? WHERE KEY=\"%@\" AND MODE=%ld", key, (long)mode];
+                break;
+                
+            default:
+                
+                querySQL = [NSString stringWithFormat:@"UPDATE PROPERTIES SET VALUE = ?, TYPE = ?, MODIFIED_DATE = ? WHERE KEY=\"%@\" AND MODE=%ld AND CREATED_BY=\"%@\"", key, (long)mode, currentUserId];
+                break;
+        }
+        
         const char *update_stmt = [querySQL UTF8String];
         sqlite3_stmt *statement;
         
@@ -558,6 +648,7 @@ static MASDatabase *_sharedDatabase = nil;
         //
         NSData *objData = (NSData *)object;
         
+//        NSString *created_by_stmt = [MASUser currentUser].objectId;
         
         //
         // Prepare the statement.
@@ -570,8 +661,9 @@ static MASDatabase *_sharedDatabase = nil;
             sqlite3_bind_blob(statement, 1, [objData bytes], (int)[objData length], SQLITE_STATIC);
             sqlite3_bind_text(statement, 2, [type UTF8String], (int)[type length], SQLITE_STATIC);
             sqlite3_bind_double(statement,3, [[NSDate date] timeIntervalSince1970]);
-            sqlite3_bind_text(statement, 4, [key UTF8String], (int)[key length], SQLITE_STATIC);
-            sqlite3_bind_int(statement, 5, mode);
+//            sqlite3_bind_text(statement, 4, [key UTF8String], (int)[key length], SQLITE_STATIC);
+//            sqlite3_bind_int(statement, 5, mode);
+//            sqlite3_bind_text(statement,6, [created_by_stmt UTF8String], (int)[created_by_stmt length], SQLITE_STATIC);
             
             
             //
@@ -643,7 +735,7 @@ static MASDatabase *_sharedDatabase = nil;
         if ([self openDB]) {
             
             char *errMsg;
-            const char *sql_stmt = "CREATE TABLE IF NOT EXISTS PROPERTIES (KEY VARCHAR NOT NULL, VALUE BLOB, TYPE VARCHAR, MODIFIED_DATE DOUBLE NOT NULL, CREATED_DATE DOUBLE, CREATED_BY VARCHAR, MODE INTEGER NOT NULL, PRIMARY KEY (KEY, MODE));";
+            const char *sql_stmt = "CREATE TABLE IF NOT EXISTS PROPERTIES (KEY VARCHAR NOT NULL, VALUE BLOB, TYPE VARCHAR, MODIFIED_DATE DOUBLE NOT NULL, CREATED_DATE DOUBLE, CREATED_BY VARCHAR, MODE INTEGER NOT NULL, PRIMARY KEY (KEY, MODE, CREATED_BY));";
             
             if (sqlite3_exec(database, sql_stmt, NULL, NULL, &errMsg) != SQLITE_OK) {
                 

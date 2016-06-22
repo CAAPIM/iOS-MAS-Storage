@@ -17,27 +17,6 @@
 static int const Database_User_Version = 2;
 
 
-/**
- *  Storage Modes
- */
-typedef NS_ENUM(NSInteger, MASStorageMode) {
-    /**
-     *  Unknown Mode
-     */
-    MASStorageModeUnknown = -1,
-    /**
-     *  Data in this mode is stored and available to a specific User ONLY
-     */
-    MASStorageModeUser,
-    /**
-     *  Data in this mode is stored and available in an Application Level
-     */
-    MASStorageModeApplication,
-    /**
-     *  Data in this mode is stored and available in an Application for a specific User
-     */
-    MASStorageModeApplicationForUser
-};
 
 
 

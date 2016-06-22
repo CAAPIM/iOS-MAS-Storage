@@ -38,7 +38,7 @@ static NSString * const MASStorageOperationDidSaveToLocalStorageNotification = @
  *  @param completion The standard (BOOL success, NSError *error) completion block.
  */
 //- (void)deleteAllObjectsFromLocalStorageWithCompletion:(void (^)(BOOL success, NSError *error))completion;
-- (void)deleteAllObjectsUsingMode:(MASStorageMode)mode
+- (void)deleteAllObjectsUsingMode:(MASLocalStorageSegment)mode
                        completion:(void (^)(BOOL success, NSError *error))completion;
 
 
@@ -50,7 +50,7 @@ static NSString * const MASStorageOperationDidSaveToLocalStorageNotification = @
  *  @param completion The standard (BOOL success, NSError *error) completion block.
  */
 - (void)deleteObjectUsingKey:(NSString *)key
-                        mode:(MASStorageMode)mode
+                        mode:(MASLocalStorageSegment)mode
                   completion:(void (^)(BOOL success, NSError *error))completion;
 //- (void)deleteObjectFromLocalStorageUsingKey:(NSString *)key
 //                                  completion:(void (^)(BOOL success, NSError *error))completion;
@@ -67,7 +67,7 @@ static NSString * const MASStorageOperationDidSaveToLocalStorageNotification = @
  *  @param completion A (NSDictionary *response, NSError *error) completion block.
  */
 - (void)findObjectUsingKey:(NSString *)key
-                      mode:(MASStorageMode)mode
+                      mode:(MASLocalStorageSegment)mode
                 completion:(void (^)(NSDictionary *response, NSError *error))completion;
 
 
@@ -77,7 +77,7 @@ static NSString * const MASStorageOperationDidSaveToLocalStorageNotification = @
  *
  *  @param completion A (NSArray *objects, NSError *error) completion block.
  */
-- (void)findObjectsUsingMode:(MASStorageMode)mode
+- (void)findObjectsUsingMode:(MASLocalStorageSegment)mode
                   completion:(void (^)(NSArray *objects, NSError *error))completion;
 
 
@@ -96,7 +96,7 @@ static NSString * const MASStorageOperationDidSaveToLocalStorageNotification = @
 - (void)saveToLocalStorageObject:(NSObject *)object
                          withKey:(NSString *)key
                          andType:(NSString *)type
-                            mode:(MASStorageMode)mode
+                            mode:(MASLocalStorageSegment)mode
                       completion:(void (^)(BOOL success, NSError *error))completion;
 
 
@@ -116,7 +116,7 @@ static NSString * const MASStorageOperationDidSaveToLocalStorageNotification = @
 - (void)updateToLocalStorageObject:(NSObject *)object
                            withKey:(NSString *)key
                            andType:(NSString *)type
-                              mode:(MASStorageMode)mode
+                              mode:(MASLocalStorageSegment)mode
                         completion:(void (^)(BOOL success, NSError *error))completion;
 
 

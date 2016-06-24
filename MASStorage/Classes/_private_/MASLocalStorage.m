@@ -269,9 +269,6 @@ MASLocalStorage *_sharedStorage = nil;
           password:(NSString *)password
         completion:(void (^)(BOOL success, NSError *error))completion
 {
-    NSParameterAssert(object);
-    NSParameterAssert(key);
-    NSParameterAssert(type);
     NSParameterAssert(password);
     
     //

@@ -522,8 +522,13 @@ static MASDatabase *_sharedDatabase = nil;
         // Prepare the data to bind.
         //
         NSData *objData = (NSData *)object;
-        
         NSString *created_by_stmt = [MASUser currentUser].objectId;
+        
+        if (mode == MASLocalStorageSegmentApplication) {
+            
+            created_by_stmt = [MASApplication currentApplication].identifier;
+        }
+
 
         //
         // Prepare the statement.
@@ -625,6 +630,12 @@ static MASDatabase *_sharedDatabase = nil;
         //
         NSString *querySQL;
         NSString *currentUserId = [MASUser currentUser].objectId;
+        
+        if (mode == MASLocalStorageSegmentApplication) {
+            
+            currentUserId = [MASApplication currentApplication].identifier;
+        }
+        
         
         switch (mode) {
                 

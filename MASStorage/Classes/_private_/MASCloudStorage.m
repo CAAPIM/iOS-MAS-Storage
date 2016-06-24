@@ -388,9 +388,16 @@
                             path:(NSString *)pathURL
                       completion:(void (^)(BOOL success, NSError *error))completion
 {
-    NSParameterAssert(object);
-    NSParameterAssert(key);
-    NSParameterAssert(type);
+    //
+    // Validate Null parameters
+    //
+    NSError *localizedError = nil;
+    
+    if (![self validateParametersObject:object key:key andType:type withError:&localizedError]) {
+        
+        if (completion) completion (NO, localizedError);
+    }
+
     
     //
     // Validate the object. Only NSString and NSData are supported
@@ -493,6 +500,46 @@
             }
         }
     }];
+}
+
+
+#pragma mark - Helper methods
+
+
++ (BOOL)validateParametersObject:(NSObject *)object
+                             key:(NSString *)key
+                         andType:(NSString *)type
+                       withError:(NSError **)error
+{
+    if (!object || [object isKindOfClass:[NSNull class]]) {
+    
+        NSString *message = NSLocalizedString(@"Parameter cannot be empty or nil", @"Parameter cannot be empty or nil");
+        *error = [NSError errorWithDomain:kSDKErrorDomain
+                                     code:MASStorageErrorObjectNotSupported
+                                 userInfo:@{ NSLocalizedDescriptionKey : message }];
+        
+        return NO;
+    }
+    else if (!key || [key isKindOfClass:[NSNull class]]) {
+        
+        NSString *message = NSLocalizedString(@"Parameter cannot be empty or nil", @"Parameter cannot be empty or nil");
+        *error = [NSError errorWithDomain:kSDKErrorDomain
+                                     code:MASStorageErrorObjectNotSupported
+                                 userInfo:@{ NSLocalizedDescriptionKey : message }];
+        
+        return NO;
+    }
+    else if (!type || [type isKindOfClass:[NSNull class]]) {
+
+        NSString *message = NSLocalizedString(@"Parameter cannot be empty or nil", @"Parameter cannot be empty or nil");
+        *error = [NSError errorWithDomain:kSDKErrorDomain
+                                     code:MASStorageErrorObjectNotSupported
+                                 userInfo:@{ NSLocalizedDescriptionKey : message }];
+        
+        return NO;
+    }
+
+    return YES;
 }
 
 @end

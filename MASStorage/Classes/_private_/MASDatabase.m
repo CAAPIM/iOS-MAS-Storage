@@ -92,12 +92,36 @@ static MASDatabase *_sharedDatabase = nil;
             //
             if (sqlite3_step(statement) == SQLITE_DONE) {
                 
-                DLog(@"success in executing SQLite3 DELETE all");
-
-                //
-                // Notify
-                //
-                if (completion) completion(YES, nil);
+                if (sqlite3_changes(database)) {
+                    
+                    DLog(@"success in executing SQLite3 DELETE all");
+                    
+                    //
+                    // Notify
+                    //
+                    if (completion) completion(YES, nil);
+                    
+                }
+                else {
+                    
+                    DLog(@"could not find value for mode %ld", (long)mode);
+                    
+                    //
+                    // Create Error Message
+                    //
+                    NSString *message = NSLocalizedString(@"Object(s) not found.", Nil);
+                    NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
+                                                                  code:MASStorageErrorDeleteAllLocalStorage
+                                                              userInfo:@{NSLocalizedDescriptionKey:message}];
+                    
+                    //
+                    // Block callback
+                    //
+                    if (completion) {
+                        
+                        completion(nil,localizedError);
+                    }
+                }
             }
             
             //
@@ -185,12 +209,36 @@ static MASDatabase *_sharedDatabase = nil;
             //
             if (sqlite3_step(statement) == SQLITE_DONE)
             {
-                DLog(@"success in executing SQLite3 DELETE into PROPERTIES");
-                
-                //
-                // Notify
-                //
-                if (completion) completion(YES, nil);
+                if (sqlite3_changes(database)) {
+                    
+                    DLog(@"success in executing SQLite3 DELETE into PROPERTIES");
+                    
+                    //
+                    // Notify
+                    //
+                    if (completion) completion(YES, nil);
+
+                }
+                else {
+                    
+                    DLog(@"could not find value for key %@", key);
+                    
+                    //
+                    // Create Error Message
+                    //
+                    NSString *message = NSLocalizedString(@"Object not found.", Nil);
+                    NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
+                                                                  code:MASStorageErrorDeleteLocalStorage
+                                                              userInfo:@{NSLocalizedDescriptionKey:message}];
+                    
+                    //
+                    // Block callback
+                    //
+                    if (completion) {
+                        
+                        completion(nil,localizedError);
+                    }
+                }
             }
             
             //

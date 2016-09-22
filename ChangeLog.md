@@ -1,7 +1,7 @@
 # Version 1.2.00-CR1
 
 ### Bug fixes
-- Fix the bug where version number and version string were returning incorrect values.
+- Fix the bug where version number and version string were returning incorrect values. [MCT-437]
 
 ### New features
 - 

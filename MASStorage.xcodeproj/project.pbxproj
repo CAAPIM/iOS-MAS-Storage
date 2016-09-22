@@ -305,7 +305,7 @@
 		102E998B1B98B16700CB297C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "CA Technologies";
 				TargetAttributes = {
 					102E99931B98B16700CB297C = {
@@ -313,6 +313,7 @@
 					};
 					102E999E1B98B16700CB297C = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 2JJZ96P8P5;
 					};
 					102E99B61B99089500CB297C = {
 						CreatedOnToolsVersion = 6.4;
@@ -527,6 +528,7 @@
 		102E99AB1B98B16700CB297C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = "1.2-CR1";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -554,6 +556,7 @@
 		102E99AC1B98B16700CB297C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = "1.2-CR1";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -581,6 +584,7 @@
 		102E99AE1B98B16700CB297C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 2JJZ96P8P5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -602,6 +606,7 @@
 		102E99AF1B98B16700CB297C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 2JJZ96P8P5;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",

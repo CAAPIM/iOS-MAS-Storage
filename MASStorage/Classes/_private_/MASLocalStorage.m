@@ -75,7 +75,23 @@ MASLocalStorage *_sharedStorage = nil;
                       mode:(MASLocalStorageSegment)mode
                 completion:(void (^)(MASObject *object, NSError *error))completion
 {
-    NSParameterAssert(key);
+    //
+    // Check for key parameter
+    //
+    if (!key)
+    {
+        NSString *message = NSLocalizedString(@"Missing parameter", @"Missing parameter");
+        NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
+                                                      code:MASStorageErrorMissingParameter
+                                                  userInfo:@{ NSLocalizedDescriptionKey : message}];
+        
+        if (completion)
+        {
+            completion(nil, localizedError);
+        }
+        
+        return;
+    }
     
     //
     // Check if MASLocalStorage was enabled
@@ -192,9 +208,22 @@ MASLocalStorage *_sharedStorage = nil;
               mode:(MASLocalStorageSegment)mode
         completion:(void (^)(BOOL success, NSError *error))completion
 {
-    NSParameterAssert(object);
-    NSParameterAssert(key);
-    NSParameterAssert(type);
+    //
+    // Check for object, key, and type parameters
+    //
+    NSError *localizedError = nil;
+    
+    if (![self validateParametersObject:object key:key andType:type withError:&localizedError])
+    {
+        if (completion)
+        {
+            completion(NO, localizedError);
+        }
+        
+        return;
+    }
+    
+    
     
     //
     //Check if MASLocalStorage was enabled
@@ -269,7 +298,23 @@ MASLocalStorage *_sharedStorage = nil;
           password:(NSString *)password
         completion:(void (^)(BOOL success, NSError *error))completion
 {
-    NSParameterAssert(password);
+    //
+    // Check for password parameter
+    //
+    if (!password)
+    {
+        NSString *message = NSLocalizedString(@"Missing parameter", @"Missing parameter");
+        NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
+                                                      code:MASStorageErrorMissingParameter
+                                                  userInfo:@{NSLocalizedDescriptionKey : message}];
+        
+        if (completion)
+        {
+            completion(NO,localizedError);
+        }
+        
+        return;
+    }
     
     //
     //Check if MASLocalStorage was enabled
@@ -374,7 +419,23 @@ MASLocalStorage *_sharedStorage = nil;
                         mode:(MASLocalStorageSegment)mode
                   completion:(void (^)(BOOL success, NSError *error))completion
 {
-    NSParameterAssert(key);
+    //
+    //Check for key parameter
+    //
+    if (!key)
+    {
+        NSString *message = NSLocalizedString(@"Missing parameter", @"Missing parameter");
+        NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
+                                                      code:MASStorageErrorMissingParameter
+                                                  userInfo:@{NSLocalizedDescriptionKey : message}];
+        
+        if (completion)
+        {
+            completion(NO, localizedError);
+        }
+        
+        return;
+    }
     
     //
     //Check if MASLocalStorage was enabled
@@ -437,7 +498,7 @@ MASLocalStorage *_sharedStorage = nil;
 }
 
 #pragma mark - Helper methods
-
+ 
 + (BOOL)validateParametersObject:(NSObject *)object
                              key:(NSString *)key
                          andType:(NSString *)type

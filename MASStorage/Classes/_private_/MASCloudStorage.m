@@ -280,23 +280,7 @@
                                      path:(NSString *)pathURL
                                completion:(void (^)(MASObject *object, NSError *error))completion
 {
-    //
-    // Check for key
-    //
-    if (!key)
-    {
-        NSString *message = NSLocalizedString(@"Missing parameter", @"Missing parameter");
-        NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
-                                                      code:MASStorageErrorMissingParameter
-                                                  userInfo:@{NSLocalizedDescriptionKey : message}];
-        
-        if (completion)
-        {
-            completion(nil,localizedError);
-        }
-        
-        return;
-    }
+    NSParameterAssert(key);
     
     
     //
@@ -492,24 +476,7 @@
                                         path:(NSString *)pathURL
                                   completion:(void (^)(BOOL success, NSError *error))completion
 {
-    //
-    // Check for key
-    //
-    if (!key)
-    {
-        NSString *message = NSLocalizedString(@"Missing parameter", @"Missing parameter");
-        NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
-                                                      code:MASStorageErrorMissingParameter
-                                                  userInfo:@{NSLocalizedDescriptionKey : message}];
-        
-        if (completion)
-        {
-            completion(NO,localizedError);
-        }
-        
-        return;
-    }
-    
+    NSParameterAssert(key);
     
     //
     //Use MAS Object to make the security call to the Gateway

@@ -57,9 +57,9 @@ typedef NS_ENUM(NSInteger, MASLocalStorageSegment) {
  *  @param mode       The MASStorageMode to be used in the search
  *  @param completion A (MASObject *object, NSError *error) completion block
  */
-+ (void)findObjectUsingKey:(NSString *)key
++ (void)findObjectUsingKey:(nonnull NSString *)key
                       mode:(MASLocalStorageSegment)mode
-                completion:(void (^)(MASObject *object, NSError *error))completion;
+                completion:(nullable void (^)(MASObject * _Nullable object, NSError * _Nullable error))completion;
 
 
 
@@ -85,11 +85,11 @@ typedef NS_ENUM(NSInteger, MASLocalStorageSegment) {
  *  @param mode       The MASStorageMode to be used in the search
  *  @param completion The standard (BOOL success, NSError *error) completion block
  */
-+ (void)saveObject:(NSObject *)object
-           withKey:(NSString *)key
-              type:(NSString *)type
++ (void)saveObject:(nonnull NSObject *)object
+           withKey:(nonnull NSString *)key
+              type:(nonnull NSString *)type
               mode:(MASLocalStorageSegment)mode
-        completion:(void (^)(BOOL success, NSError *error))completion;
+        completion:(nullable void (^)(BOOL success, NSError * _Nullable error))completion;
 
 
 
@@ -103,12 +103,12 @@ typedef NS_ENUM(NSInteger, MASLocalStorageSegment) {
  *  @param password   Password used for encryption.
  *  @param completion The standard (BOOL success, NSError *error) completion block
  */
-+ (void)saveObject:(NSObject *)object
-           withKey:(NSString *)key
-              type:(NSString *)type
++ (void)saveObject:(nonnull NSObject *)object
+           withKey:(nonnull NSString *)key
+              type:(nonnull NSString *)type
               mode:(MASLocalStorageSegment)mode
-          password:(NSString *)password
-        completion:(void (^)(BOOL success, NSError *error))completion;
+          password:(nonnull NSString *)password
+        completion:(nullable void (^)(BOOL success, NSError * _Nullable error))completion;
 
 
 
@@ -121,9 +121,9 @@ typedef NS_ENUM(NSInteger, MASLocalStorageSegment) {
  *  @param mode       The MASStorageMode to be used in the search
  *  @param completion The standard (BOOL success, NSError *error) completion block
  */
-+ (void)deleteObjectUsingKey:(NSString *)key
++ (void)deleteObjectUsingKey:(nonnull NSString *)key
                         mode:(MASLocalStorageSegment)mode
-                  completion:(void (^)(BOOL success, NSError *error))completion;
+                  completion:(nullable void (^)(BOOL success, NSError * _Nullable error))completion;
 
 
 

@@ -45,7 +45,7 @@ typedef NS_ENUM(NSInteger, MASLocalStorageSegment) {
  *
  *  @return Singleton instance of MASLocalStorage.
  */
-+ (instancetype)enableLocalStorage;
++ (nonnull instancetype)enableLocalStorage;
 
 
 #pragma mark - Find methods
@@ -70,7 +70,7 @@ typedef NS_ENUM(NSInteger, MASLocalStorageSegment) {
  *  @param completion A (NSArray *objects, NSError *error) completion block
  */
 + (void)findObjectsUsingMode:(MASLocalStorageSegment)mode
-                  completion:(void (^)(NSArray *objects, NSError *error))completion;
+                  completion:(nullable void (^)(NSArray * _Nullable objects, NSError * _Nullable error))completion;
 
 
 
@@ -134,7 +134,7 @@ typedef NS_ENUM(NSInteger, MASLocalStorageSegment) {
  *  @param completion The standard (BOOL success, NSError *error) completion block
  */
 + (void)deleteAllObjectsUsingMode:(MASLocalStorageSegment)mode
-                       completion:(void (^)(BOOL success, NSError *error))completion;
+                       completion:(nullable void (^)(BOOL success, NSError * _Nullable error))completion;
 
 
 @end

@@ -50,9 +50,9 @@ typedef NS_ENUM(NSInteger, MASCloudStorageSegment) {
  *  @param mode       The MASStorageMode to be used in the search
  *  @param completion A (MASObject *object, NSError *error) completion block
  */
-+ (void)findObjectUsingKey:(NSString *)key
++ (void)findObjectUsingKey:(nonnull NSString *)key
                       mode:(MASCloudStorageSegment)mode
-                completion:(void (^)(MASObject *object, NSError *error))completion;
+                completion:(nullable void (^)(MASObject * _Nullable object, NSError * _Nullable error))completion;
 
 
 
@@ -63,7 +63,7 @@ typedef NS_ENUM(NSInteger, MASCloudStorageSegment) {
  *  @param completion A (NSArray *objects, NSError *error) completion block
  */
 + (void)findObjectsUsingMode:(MASCloudStorageSegment)mode
-                  completion:(void (^)(NSArray *objects, NSError *error))completion;
+                  completion:(nullable void (^)(NSArray * _Nullable objects, NSError * _Nullable error))completion;
 
 
 
@@ -78,11 +78,11 @@ typedef NS_ENUM(NSInteger, MASCloudStorageSegment) {
  *  @param mode       The MASStorageMode to be used in the save
  *  @param completion The standard (BOOL success, NSError *error) completion block
  */
-+ (void)saveObject:(NSObject *)object
-           withKey:(NSString *)key
-              type:(NSString *)type
++ (void)saveObject:(nonnull NSObject *)object
+           withKey:(nonnull NSString *)key
+              type:(nonnull NSString *)type
               mode:(MASCloudStorageSegment)mode
-        completion:(void (^)(BOOL success, NSError *error))completion;
+        completion:(nonnull void (^)(BOOL success, NSError * _Nullable error))completion;
 
 
 
@@ -95,8 +95,8 @@ typedef NS_ENUM(NSInteger, MASCloudStorageSegment) {
  *  @param mode       The MASStorageMode to be used in the save
  *  @param completion The standard (BOOL success, NSError *error) completion block
  */
-+ (void)deleteObjectUsingKey:(NSString *)key
++ (void)deleteObjectUsingKey:(nonnull NSString *)key
                         mode:(MASCloudStorageSegment)mode
-                  completion:(void (^)(BOOL success, NSError *error))completion;
+                  completion:(nullable void (^)(BOOL success, NSError * _Nullable error))completion;
 
 @end

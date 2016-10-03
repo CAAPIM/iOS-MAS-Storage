@@ -119,7 +119,7 @@ static MASDatabase *_sharedDatabase = nil;
                     //
                     if (completion) {
                         
-                        completion(nil,localizedError);
+                        completion(NO,localizedError);
                     }
                 }
             }
@@ -167,7 +167,7 @@ static MASDatabase *_sharedDatabase = nil;
                                                       code:MASStorageErrorFindFromLocalStorage
                                                   userInfo:@{ NSLocalizedDescriptionKey : message }];
         
-        if (completion) completion(nil,localizedError);
+        if (completion) completion(NO,localizedError);
         
         return;
     }
@@ -236,7 +236,7 @@ static MASDatabase *_sharedDatabase = nil;
                     //
                     if (completion) {
                         
-                        completion(nil,localizedError);
+                        completion(NO,localizedError);
                     }
                 }
             }
@@ -548,7 +548,7 @@ static MASDatabase *_sharedDatabase = nil;
                                                       code:MASStorageErrorFindFromLocalStorage
                                                   userInfo:@{ NSLocalizedDescriptionKey : message }];
         
-        if (completion) completion(nil,localizedError);
+        if (completion) completion(NO,localizedError);
         
         return;
     }
@@ -663,7 +663,7 @@ static MASDatabase *_sharedDatabase = nil;
                                                       code:MASStorageErrorFindFromLocalStorage
                                                   userInfo:@{ NSLocalizedDescriptionKey : message }];
         
-        if (completion) completion(nil,localizedError);
+        if (completion) completion(NO,localizedError);
         
         return;
     }

@@ -22,5 +22,4 @@ typedef NS_ENUM (NSUInteger, MASStorageError)
 {
     MASStorageErrorObjectNotSupported = 101,
     MASStorageErrorLocalStorageNotEnabled = 102,
-    MASStorageErrorMissingParameter = 103,
 };

@@ -12,7 +12,7 @@
 
 #pragma mark - Storage Notifications
 
-static NSString * const MASStorageOperationDidSaveToLocalStorageNotification = @"com.ca.storage.operation.save";
+static NSString * _Nonnull const MASStorageOperationDidSaveToLocalStorageNotification = @"com.ca.storage.operation.save";
 
 
 @interface MASDatabase : NSObject
@@ -27,7 +27,7 @@ static NSString * const MASStorageOperationDidSaveToLocalStorageNotification = @
  *
  *  @return Singleton instance of MASDatabase.
  */
-+ (instancetype)sharedDatabase;
++ (nonnull instancetype)sharedDatabase;
 
 
 # pragma mark - Delete
@@ -39,7 +39,7 @@ static NSString * const MASStorageOperationDidSaveToLocalStorageNotification = @
  */
 //- (void)deleteAllObjectsFromLocalStorageWithCompletion:(void (^)(BOOL success, NSError *error))completion;
 - (void)deleteAllObjectsUsingMode:(MASLocalStorageSegment)mode
-                       completion:(void (^)(BOOL success, NSError *error))completion;
+                       completion:(nullable void (^)(BOOL success, NSError * _Nullable error))completion;
 
 
 
@@ -49,9 +49,9 @@ static NSString * const MASStorageOperationDidSaveToLocalStorageNotification = @
  *  @param key        The Key used to delete the object from local storage.
  *  @param completion The standard (BOOL success, NSError *error) completion block.
  */
-- (void)deleteObjectUsingKey:(NSString *)key
+- (void)deleteObjectUsingKey:(nonnull NSString *)key
                         mode:(MASLocalStorageSegment)mode
-                  completion:(void (^)(BOOL success, NSError *error))completion;
+                  completion:(nullable void (^)(BOOL success, NSError * _Nonnull error))completion;
 //- (void)deleteObjectFromLocalStorageUsingKey:(NSString *)key
 //                                  completion:(void (^)(BOOL success, NSError *error))completion;
 
@@ -66,9 +66,9 @@ static NSString * const MASStorageOperationDidSaveToLocalStorageNotification = @
  *  @param key        The Key used to get the object from local storage.
  *  @param completion A (NSDictionary *response, NSError *error) completion block.
  */
-- (void)findObjectUsingKey:(NSString *)key
+- (void)findObjectUsingKey:(nonnull NSString *)key
                       mode:(MASLocalStorageSegment)mode
-                completion:(void (^)(NSDictionary *response, NSError *error))completion;
+                completion:(nullable void (^)(NSDictionary * _Nullable response, NSError * _Nullable error))completion;
 
 
 
@@ -78,7 +78,7 @@ static NSString * const MASStorageOperationDidSaveToLocalStorageNotification = @
  *  @param completion A (NSArray *objects, NSError *error) completion block.
  */
 - (void)findObjectsUsingMode:(MASLocalStorageSegment)mode
-                  completion:(void (^)(NSArray *objects, NSError *error))completion;
+                  completion:(nullable void (^)(NSArray * _Nullable objects, NSError * _Nullable error))completion;
 
 
 
@@ -93,11 +93,11 @@ static NSString * const MASStorageOperationDidSaveToLocalStorageNotification = @
  *  @param mode       The MASStorageMode to be used in the search.
  *  @param completion The standard (BOOL success, NSError *error) completion block.
  */
-- (void)saveToLocalStorageObject:(NSObject *)object
-                         withKey:(NSString *)key
-                         andType:(NSString *)type
+- (void)saveToLocalStorageObject:(nonnull NSObject *)object
+                         withKey:(nonnull NSString *)key
+                         andType:(nonnull NSString *)type
                             mode:(MASLocalStorageSegment)mode
-                      completion:(void (^)(BOOL success, NSError *error))completion;
+                      completion:(nullable void (^)(BOOL success, NSError * _Nullable error))completion;
 
 
 
@@ -113,11 +113,11 @@ static NSString * const MASStorageOperationDidSaveToLocalStorageNotification = @
  *  @param mode       The MASStorageMode to be used in the search.
  *  @param completion The standard (BOOL success, NSError *error) completion block.
  */
-- (void)updateToLocalStorageObject:(NSObject *)object
-                           withKey:(NSString *)key
-                           andType:(NSString *)type
+- (void)updateToLocalStorageObject:(nonnull NSObject *)object
+                           withKey:(nonnull NSString *)key
+                           andType:(nonnull NSString *)type
                               mode:(MASLocalStorageSegment)mode
-                        completion:(void (^)(BOOL success, NSError *error))completion;
+                        completion:(nullable void (^)(BOOL success, NSError * _Nullable error))completion;
 
 
 @end

@@ -82,7 +82,7 @@ MASLocalStorage *_sharedStorage = nil;
     {
         NSString *message = NSLocalizedString(@"Missing parameter", @"Missing parameter");
         NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
-                                                      code:MASStorageErrorMissingParameter
+                                                      code:MASStorageErrorObjectNotSupported
                                                   userInfo:@{ NSLocalizedDescriptionKey : message}];
         
         if (completion)
@@ -305,7 +305,7 @@ MASLocalStorage *_sharedStorage = nil;
     {
         NSString *message = NSLocalizedString(@"Missing parameter", @"Missing parameter");
         NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
-                                                      code:MASStorageErrorMissingParameter
+                                                      code:MASStorageErrorObjectNotSupported
                                                   userInfo:@{NSLocalizedDescriptionKey : message}];
         
         if (completion)
@@ -426,7 +426,7 @@ MASLocalStorage *_sharedStorage = nil;
     {
         NSString *message = NSLocalizedString(@"Missing parameter", @"Missing parameter");
         NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
-                                                      code:MASStorageErrorMissingParameter
+                                                      code:MASStorageErrorObjectNotSupported
                                                   userInfo:@{NSLocalizedDescriptionKey : message}];
         
         if (completion)

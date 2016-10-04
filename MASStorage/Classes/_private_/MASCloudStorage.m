@@ -546,27 +546,39 @@
     if (!object || [object isKindOfClass:[NSNull class]]) {
     
         NSString *message = NSLocalizedString(@"Parameter cannot be empty or nil", @"Parameter cannot be empty or nil");
-        *error = [NSError errorWithDomain:kSDKErrorDomain
-                                     code:MASStorageErrorObjectNotSupported
-                                 userInfo:@{ NSLocalizedDescriptionKey : message }];
+        
+        if (*error != nil)
+        {
+            *error = [NSError errorWithDomain:kSDKErrorDomain
+                                         code:MASStorageErrorObjectNotSupported
+                                     userInfo:@{ NSLocalizedDescriptionKey : message }];
+        }
         
         return NO;
     }
     else if (!key || [key isKindOfClass:[NSNull class]]) {
         
         NSString *message = NSLocalizedString(@"Parameter cannot be empty or nil", @"Parameter cannot be empty or nil");
-        *error = [NSError errorWithDomain:kSDKErrorDomain
-                                     code:MASStorageErrorObjectNotSupported
-                                 userInfo:@{ NSLocalizedDescriptionKey : message }];
+        
+        if (*error != nil)
+        {
+            *error = [NSError errorWithDomain:kSDKErrorDomain
+                                         code:MASStorageErrorObjectNotSupported
+                                     userInfo:@{ NSLocalizedDescriptionKey : message }];
+        }
         
         return NO;
     }
     else if (!type || [type isKindOfClass:[NSNull class]]) {
 
         NSString *message = NSLocalizedString(@"Parameter cannot be empty or nil", @"Parameter cannot be empty or nil");
-        *error = [NSError errorWithDomain:kSDKErrorDomain
-                                     code:MASStorageErrorObjectNotSupported
-                                 userInfo:@{ NSLocalizedDescriptionKey : message }];
+        
+        if (*error != nil)
+        {
+            *error = [NSError errorWithDomain:kSDKErrorDomain
+                                         code:MASStorageErrorObjectNotSupported
+                                     userInfo:@{ NSLocalizedDescriptionKey : message }];
+        }
         
         return NO;
     }

@@ -20,6 +20,6 @@ static NSString *const MASStorageEndPointKey = @"mas-storage-path"; // string
 
 typedef NS_ENUM (NSUInteger, MASStorageError)
 {
-    MASStorageErrorObjectNotSupported = 101,
-    MASStorageErrorLocalStorageNotEnabled = 102,
+    MASStorageErrorObjectNotSupported = 300101,
+    MASStorageErrorLocalStorageNotEnabled = 310102,
 };

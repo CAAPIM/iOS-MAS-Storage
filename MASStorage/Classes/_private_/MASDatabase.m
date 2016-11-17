@@ -24,6 +24,7 @@ typedef NS_ENUM (NSUInteger, MASStorageError)
     MASStorageErrorDeleteLocalStorage = 104,
     MASStorageErrorDeleteAllLocalStorage = 105,
     MASStorageErrorFindFromLocalStorage = 106,
+    MASStorageErrorUserSessionIsCurrentlyLocked = 108,
 };
 
 
@@ -171,6 +172,17 @@ static MASDatabase *_sharedDatabase = nil;
         
         return;
     }
+    else if (mode != MASLocalStorageSegmentApplication && [MASUser currentUser].isSessionLocked)
+    {
+        NSString *message = NSLocalizedString(@"User session is currently locked", @"User session is currently locked");
+        NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
+                                                      code:MASStorageErrorUserSessionIsCurrentlyLocked
+                                                  userInfo:@{ NSLocalizedDescriptionKey : message }];
+        
+        if (completion) completion(nil,localizedError);
+        
+        return;
+    }
 
     //
     // Open DB
@@ -284,6 +296,17 @@ static MASDatabase *_sharedDatabase = nil;
         NSString *message = NSLocalizedString(@"Unauthenticated user", @"unauthenticated user");
         NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
                                                       code:MASStorageErrorFindFromLocalStorage
+                                                  userInfo:@{ NSLocalizedDescriptionKey : message }];
+        
+        if (completion) completion(nil,localizedError);
+        
+        return;
+    }
+    else if (mode != MASLocalStorageSegmentApplication && [MASUser currentUser].isSessionLocked)
+    {
+        NSString *message = NSLocalizedString(@"User session is currently locked", @"User session is currently locked");
+        NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
+                                                      code:MASStorageErrorUserSessionIsCurrentlyLocked
                                                   userInfo:@{ NSLocalizedDescriptionKey : message }];
         
         if (completion) completion(nil,localizedError);
@@ -426,6 +449,17 @@ static MASDatabase *_sharedDatabase = nil;
         
         return;
     }
+    else if (mode != MASLocalStorageSegmentApplication && [MASUser currentUser].isSessionLocked)
+    {
+        NSString *message = NSLocalizedString(@"User session is currently locked", @"User session is currently locked");
+        NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
+                                                      code:MASStorageErrorUserSessionIsCurrentlyLocked
+                                                  userInfo:@{ NSLocalizedDescriptionKey : message }];
+        
+        if (completion) completion(nil,localizedError);
+        
+        return;
+    }
     
     //
     // Open DB
@@ -552,6 +586,17 @@ static MASDatabase *_sharedDatabase = nil;
         
         return;
     }
+    else if (mode != MASLocalStorageSegmentApplication && [MASUser currentUser].isSessionLocked)
+    {
+        NSString *message = NSLocalizedString(@"User session is currently locked", @"User session is currently locked");
+        NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
+                                                      code:MASStorageErrorUserSessionIsCurrentlyLocked
+                                                  userInfo:@{ NSLocalizedDescriptionKey : message }];
+        
+        if (completion) completion(nil,localizedError);
+        
+        return;
+    }
 
     //
     // Open DB
@@ -664,6 +709,17 @@ static MASDatabase *_sharedDatabase = nil;
                                                   userInfo:@{ NSLocalizedDescriptionKey : message }];
         
         if (completion) completion(NO,localizedError);
+        
+        return;
+    }
+    else if (mode != MASLocalStorageSegmentApplication && [MASUser currentUser].isSessionLocked)
+    {
+        NSString *message = NSLocalizedString(@"User session is currently locked", @"User session is currently locked");
+        NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
+                                                      code:MASStorageErrorUserSessionIsCurrentlyLocked
+                                                  userInfo:@{ NSLocalizedDescriptionKey : message }];
+        
+        if (completion) completion(nil,localizedError);
         
         return;
     }

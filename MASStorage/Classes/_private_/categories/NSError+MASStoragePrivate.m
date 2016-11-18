@@ -43,7 +43,8 @@
             //
             // Storage object
             //
-        case MASStorageErrorObjectNotSupported: return NSLocalizedString(@"Missing parameter", @"Missing parameter");
+        case MASStorageErrorObjectNotSupported: return NSLocalizedString(@"Object not supported", @"Object not supported");
+        case MASStorageErrorParameterCanNotBeEmptyOrNil: return NSLocalizedString(@"Missing parameter - parameter cannot be empty or nil", @"Missing parameter - parameter cannot be empty or nil");
             
             //
             // Local Storage

@@ -30,7 +30,7 @@
     //
     // Endpoint validation
     //
-    if (!storageEndPoint || [storageEndPoint isKindOfClass:[NSString class]] || storageEndPoint.length == 0)
+    if (!storageEndPoint || ![storageEndPoint isKindOfClass:[NSString class]] || storageEndPoint.length == 0)
     {
         NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorInvalidEndpoint errorDomain:kSDKErrorDomain];
         
@@ -107,7 +107,7 @@
     //
     // Endpoint validation
     //
-    if (!storageEndPoint || [storageEndPoint isKindOfClass:[NSString class]] || storageEndPoint.length == 0)
+    if (!storageEndPoint || ![storageEndPoint isKindOfClass:[NSString class]] || storageEndPoint.length == 0)
     {
         NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorInvalidEndpoint errorDomain:kSDKErrorDomain];
         
@@ -188,13 +188,13 @@
     //
     // Endpoint validation
     //
-    if (!storageEndPoint || [storageEndPoint isKindOfClass:[NSString class]] || storageEndPoint.length == 0)
+    if (!storageEndPoint || ![storageEndPoint isKindOfClass:[NSString class]] || storageEndPoint.length == 0)
     {
         NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorInvalidEndpoint errorDomain:kSDKErrorDomain];
         
         if (completion)
         {
-            completion(nil, localizedError);
+            completion(NO, localizedError);
         }
         
         return;
@@ -266,13 +266,13 @@
     //
     // Endpoint validation
     //
-    if (!storageEndPoint || [storageEndPoint isKindOfClass:[NSString class]] || storageEndPoint.length == 0)
+    if (!storageEndPoint || ![storageEndPoint isKindOfClass:[NSString class]] || storageEndPoint.length == 0)
     {
         NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorInvalidEndpoint errorDomain:kSDKErrorDomain];
         
         if (completion)
         {
-            completion(nil, localizedError);
+            completion(NO, localizedError);
         }
         
         return;

@@ -46,6 +46,8 @@
         case MASStorageErrorObjectNotSupported: return NSLocalizedString(@"Object not supported", @"Object not supported");
         case MASStorageErrorParameterCanNotBeEmptyOrNil: return NSLocalizedString(@"Missing parameter - parameter cannot be empty or nil", @"Missing parameter - parameter cannot be empty or nil");
             
+        case MASStorageErrorInvalidEndpoint: return NSLocalizedString(@"Storage endpoint in the configuration is invalid or missing.", @"Storage endpoint in the configuration is invalid or missing.");
+            
             //
             // Local Storage
             //

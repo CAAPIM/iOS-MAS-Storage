@@ -25,6 +25,7 @@ typedef NS_ENUM (NSUInteger, MASStorageError)
     //
     MASStorageErrorObjectNotSupported = 300001,
     MASStorageErrorParameterCanNotBeEmptyOrNil = 300002,
+    MASStorageErrorInvalidEndpoint = 300003,
     
     //
     // Local Storage

@@ -27,6 +27,21 @@
     NSString *pathURL;
     NSString *storageEndPoint = [[[MASConfiguration currentConfiguration] endpointPathForKey:MASStorageEndPointKey] stringByDeletingLastPathComponent];
 
+    //
+    // Endpoint validation
+    //
+    if (!storageEndPoint || [storageEndPoint isKindOfClass:[NSString class]] || storageEndPoint.length == 0)
+    {
+        NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorInvalidEndpoint errorDomain:kSDKErrorDomain];
+        
+        if (completion)
+        {
+            completion(nil, localizedError);
+        }
+        
+        return;
+    }
+    
     switch (mode) {
             
         case MASCloudStorageSegmentApplication:
@@ -89,6 +104,21 @@
     NSString *pathURL;
     NSString *storageEndPoint = [[[MASConfiguration currentConfiguration] endpointPathForKey:MASStorageEndPointKey] stringByDeletingLastPathComponent];
 
+    //
+    // Endpoint validation
+    //
+    if (!storageEndPoint || [storageEndPoint isKindOfClass:[NSString class]] || storageEndPoint.length == 0)
+    {
+        NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorInvalidEndpoint errorDomain:kSDKErrorDomain];
+        
+        if (completion)
+        {
+            completion(nil, localizedError);
+        }
+        
+        return;
+    }
+    
     switch (mode) {
             
         case MASCloudStorageSegmentApplication:
@@ -155,6 +185,21 @@
     NSString *pathURL;
     NSString *storageEndPoint = [[[MASConfiguration currentConfiguration] endpointPathForKey:MASStorageEndPointKey] stringByDeletingLastPathComponent];
 
+    //
+    // Endpoint validation
+    //
+    if (!storageEndPoint || [storageEndPoint isKindOfClass:[NSString class]] || storageEndPoint.length == 0)
+    {
+        NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorInvalidEndpoint errorDomain:kSDKErrorDomain];
+        
+        if (completion)
+        {
+            completion(nil, localizedError);
+        }
+        
+        return;
+    }
+    
     switch (mode) {
             
         case MASCloudStorageSegmentApplication:
@@ -218,6 +263,21 @@
     NSString *pathURL;
     NSString *storageEndPoint = [[[MASConfiguration currentConfiguration] endpointPathForKey:MASStorageEndPointKey] stringByDeletingLastPathComponent];
 
+    //
+    // Endpoint validation
+    //
+    if (!storageEndPoint || [storageEndPoint isKindOfClass:[NSString class]] || storageEndPoint.length == 0)
+    {
+        NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorInvalidEndpoint errorDomain:kSDKErrorDomain];
+        
+        if (completion)
+        {
+            completion(nil, localizedError);
+        }
+        
+        return;
+    }
+    
     switch (mode) {
             
         case MASCloudStorageSegmentApplication:

@@ -16,6 +16,7 @@
 #import "MASObject+StoragePrivate.h"
 #import "MASStorageConstants.h"
 #import "MASStorageConstantsPrivate.h"
+#import "NSError+MASStoragePrivate.h"
 
 static void *masDatabasePropertyKey;
 
@@ -80,10 +81,8 @@ MASLocalStorage *_sharedStorage = nil;
     //
     if (!key)
     {
-        NSString *message = NSLocalizedString(@"Missing parameter", @"Missing parameter");
-        NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
-                                                      code:MASStorageErrorObjectNotSupported
-                                                  userInfo:@{ NSLocalizedDescriptionKey : message}];
+        
+        NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorParameterCanNotBeEmptyOrNil errorDomain:kSDKErrorDomain];
         
         if (completion)
         {
@@ -100,10 +99,7 @@ MASLocalStorage *_sharedStorage = nil;
         
         if (completion) {
             
-            NSString *message = NSLocalizedString(@"Local Storage not enabled. Please call [MAS enableLocalStorage] to start using Local Storage", nil);
-            NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
-                                                          code:MASStorageErrorLocalStorageNotEnabled
-                                                      userInfo:@{ NSLocalizedDescriptionKey : message }];
+            NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorLocalStorageNotEnabled errorDomain:kSDKErrorDomain];
             
             completion(nil,localizedError);
         }
@@ -150,10 +146,7 @@ MASLocalStorage *_sharedStorage = nil;
         
         if (completion) {
             
-            NSString *message = NSLocalizedString(@"Local Storage not enabled. Please call [MAS enableLocalStorage] to start using Local Storage", nil);
-            NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
-                                                          code:MASStorageErrorLocalStorageNotEnabled
-                                                      userInfo:@{ NSLocalizedDescriptionKey : message }];
+            NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorLocalStorageNotEnabled errorDomain:kSDKErrorDomain];
             
             completion(nil,localizedError);
         }
@@ -226,16 +219,13 @@ MASLocalStorage *_sharedStorage = nil;
     
     
     //
-    //Check if MASLocalStorage was enabled
+    // Check if MASLocalStorage was enabled
     //
     if (!_sharedStorage) {
         
         if (completion) {
             
-            NSString *message = NSLocalizedString(@"Local Storage not enabled. Please call [MAS enableLocalStorage] to start using Local Storage", nil);
-            NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
-                                                          code:MASStorageErrorLocalStorageNotEnabled
-                                                      userInfo:@{ NSLocalizedDescriptionKey : message }];
+            NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorLocalStorageNotEnabled errorDomain:kSDKErrorDomain];
             
             completion(NO,localizedError);
         }
@@ -258,10 +248,7 @@ MASLocalStorage *_sharedStorage = nil;
     }
     else if (completion) {
         
-        NSString *message = NSLocalizedString(@"Object not supported", @"Object not supported");
-        NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
-                                                      code:MASStorageErrorObjectNotSupported
-                                                  userInfo:@{ NSLocalizedDescriptionKey : message }];
+        NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorObjectNotSupported errorDomain:kSDKErrorDomain];
         
         completion(NO, localizedError);
         
@@ -303,10 +290,7 @@ MASLocalStorage *_sharedStorage = nil;
     //
     if (!password)
     {
-        NSString *message = NSLocalizedString(@"Missing parameter", @"Missing parameter");
-        NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
-                                                      code:MASStorageErrorObjectNotSupported
-                                                  userInfo:@{NSLocalizedDescriptionKey : message}];
+        NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorParameterCanNotBeEmptyOrNil errorDomain:kSDKErrorDomain];
         
         if (completion)
         {
@@ -323,10 +307,7 @@ MASLocalStorage *_sharedStorage = nil;
         
         if (completion) {
             
-            NSString *message = NSLocalizedString(@"Local Storage not enabled. Please call [MAS enableLocalStorage] to start using Local Storage", nil);
-            NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
-                                                          code:MASStorageErrorLocalStorageNotEnabled
-                                                      userInfo:@{ NSLocalizedDescriptionKey : message }];
+            NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorLocalStorageNotEnabled errorDomain:kSDKErrorDomain];
             
             completion(NO,localizedError);
         }
@@ -359,10 +340,7 @@ MASLocalStorage *_sharedStorage = nil;
     }
     else if (completion) {
         
-        NSString *message = NSLocalizedString(@"Object not supported", @"Object not supported");
-        NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
-                                                      code:MASStorageErrorObjectNotSupported
-                                                  userInfo:@{ NSLocalizedDescriptionKey : message }];
+        NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorObjectNotSupported errorDomain:kSDKErrorDomain];
         
         completion(NO, localizedError);
         
@@ -424,10 +402,7 @@ MASLocalStorage *_sharedStorage = nil;
     //
     if (!key)
     {
-        NSString *message = NSLocalizedString(@"Missing parameter", @"Missing parameter");
-        NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
-                                                      code:MASStorageErrorObjectNotSupported
-                                                  userInfo:@{NSLocalizedDescriptionKey : message}];
+        NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorParameterCanNotBeEmptyOrNil errorDomain:kSDKErrorDomain];
         
         if (completion)
         {
@@ -444,10 +419,7 @@ MASLocalStorage *_sharedStorage = nil;
         
         if (completion) {
             
-            NSString *message = NSLocalizedString(@"Local Storage not enabled. Please call [MAS enableLocalStorage] to start using Local Storage", nil);
-            NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
-                                                          code:MASStorageErrorLocalStorageNotEnabled
-                                                      userInfo:@{ NSLocalizedDescriptionKey : message }];
+            NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorLocalStorageNotEnabled errorDomain:kSDKErrorDomain];
             
             completion(NO,localizedError);
         }
@@ -476,11 +448,8 @@ MASLocalStorage *_sharedStorage = nil;
     if (!_sharedStorage)
     {
         if (completion) {
-         
-            NSString *message = NSLocalizedString(@"Local Storage not enabled. Please call [MAS enableLocalStorage] to start using Local Storage", nil);
-            NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
-                                                          code:MASStorageErrorLocalStorageNotEnabled
-                                                      userInfo:@{ NSLocalizedDescriptionKey : message }];
+            
+            NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorLocalStorageNotEnabled errorDomain:kSDKErrorDomain];
             
             completion(NO,localizedError);
         }
@@ -506,39 +475,27 @@ MASLocalStorage *_sharedStorage = nil;
 {
     if (!object || [object isKindOfClass:[NSNull class]]) {
         
-        NSString *message = NSLocalizedString(@"Parameter cannot be empty or nil", @"Parameter cannot be empty or nil");
-        
         if (*error != nil)
         {
-            *error = [NSError errorWithDomain:kSDKErrorDomain
-                                         code:MASStorageErrorObjectNotSupported
-                                     userInfo:@{ NSLocalizedDescriptionKey : message }];
+            *error = [NSError errorForStorageErrorCode:MASStorageErrorParameterCanNotBeEmptyOrNil errorDomain:kSDKErrorDomain];
         }
         
         return NO;
     }
     else if (!key || [key isKindOfClass:[NSNull class]]) {
         
-        NSString *message = NSLocalizedString(@"Parameter cannot be empty or nil", @"Parameter cannot be empty or nil");
-        
         if (*error != nil)
         {
-            *error = [NSError errorWithDomain:kSDKErrorDomain
-                                         code:MASStorageErrorObjectNotSupported
-                                     userInfo:@{ NSLocalizedDescriptionKey : message }];
+            *error = [NSError errorForStorageErrorCode:MASStorageErrorParameterCanNotBeEmptyOrNil errorDomain:kSDKErrorDomain];
         }
         
         return NO;
     }
     else if (!type || [type isKindOfClass:[NSNull class]]) {
         
-        NSString *message = NSLocalizedString(@"Parameter cannot be empty or nil", @"Parameter cannot be empty or nil");
-        
         if (*error != nil)
         {
-            *error = [NSError errorWithDomain:kSDKErrorDomain
-                                         code:MASStorageErrorObjectNotSupported
-                                     userInfo:@{ NSLocalizedDescriptionKey : message }];
+            *error = [NSError errorForStorageErrorCode:MASStorageErrorParameterCanNotBeEmptyOrNil errorDomain:kSDKErrorDomain];
         }
     
         return NO;

@@ -14,6 +14,7 @@
 #import "MASObject+MASStorage.h"
 #import "MASObject+StoragePrivate.h"
 #import "MASStorageConstantsPrivate.h"
+#import "NSError+MASStoragePrivate.h"
 
 @implementation MASCloudStorage
 
@@ -24,8 +25,25 @@
                 completion:(void (^)(MASObject *object, NSError *error))completion
 {
     NSString *pathURL;
-    NSString *storageEndPoint = [[[MASConfiguration currentConfiguration] endpointPathForKey:MASStorageEndPointKey] stringByDeletingLastPathComponent];
-
+    NSString *storageEndPointConfiguration = [[MASConfiguration currentConfiguration] endpointPathForKey:MASStorageEndPointKey];
+    
+    //
+    // Endpoint validation
+    //
+    if (!storageEndPointConfiguration || ![storageEndPointConfiguration isKindOfClass:[NSString class]] || storageEndPointConfiguration.length == 0)
+    {
+        NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorInvalidEndpoint errorDomain:kSDKErrorDomain];
+        
+        if (completion)
+        {
+            completion(nil, localizedError);
+        }
+        
+        return;
+    }
+    
+    NSString *storageEndPoint = [storageEndPointConfiguration stringByDeletingLastPathComponent];
+    
     switch (mode) {
             
         case MASCloudStorageSegmentApplication:
@@ -86,8 +104,25 @@
                   completion:(void (^)(NSArray *objects, NSError *error))completion
 {
     NSString *pathURL;
-    NSString *storageEndPoint = [[[MASConfiguration currentConfiguration] endpointPathForKey:MASStorageEndPointKey] stringByDeletingLastPathComponent];
-
+    NSString *storageEndPointConfiguration = [[MASConfiguration currentConfiguration] endpointPathForKey:MASStorageEndPointKey];
+    
+    //
+    // Endpoint validation
+    //
+    if (!storageEndPointConfiguration || ![storageEndPointConfiguration isKindOfClass:[NSString class]] || storageEndPointConfiguration.length == 0)
+    {
+        NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorInvalidEndpoint errorDomain:kSDKErrorDomain];
+        
+        if (completion)
+        {
+            completion(nil, localizedError);
+        }
+        
+        return;
+    }
+    
+    NSString *storageEndPoint = [storageEndPointConfiguration stringByDeletingLastPathComponent];
+    
     switch (mode) {
             
         case MASCloudStorageSegmentApplication:
@@ -152,8 +187,25 @@
         completion:(void (^)(BOOL success, NSError *error))completion
 {
     NSString *pathURL;
-    NSString *storageEndPoint = [[[MASConfiguration currentConfiguration] endpointPathForKey:MASStorageEndPointKey] stringByDeletingLastPathComponent];
-
+    NSString *storageEndPointConfiguration = [[MASConfiguration currentConfiguration] endpointPathForKey:MASStorageEndPointKey];
+    
+    //
+    // Endpoint validation
+    //
+    if (!storageEndPointConfiguration || ![storageEndPointConfiguration isKindOfClass:[NSString class]] || storageEndPointConfiguration.length == 0)
+    {
+        NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorInvalidEndpoint errorDomain:kSDKErrorDomain];
+        
+        if (completion)
+        {
+            completion(NO, localizedError);
+        }
+        
+        return;
+    }
+    
+    NSString *storageEndPoint = [storageEndPointConfiguration stringByDeletingLastPathComponent];
+    
     switch (mode) {
             
         case MASCloudStorageSegmentApplication:
@@ -215,8 +267,25 @@
                   completion:(void (^)(BOOL success, NSError *error))completion
 {
     NSString *pathURL;
-    NSString *storageEndPoint = [[[MASConfiguration currentConfiguration] endpointPathForKey:MASStorageEndPointKey] stringByDeletingLastPathComponent];
-
+    NSString *storageEndPointConfiguration = [[MASConfiguration currentConfiguration] endpointPathForKey:MASStorageEndPointKey];
+    
+    //
+    // Endpoint validation
+    //
+    if (!storageEndPointConfiguration || ![storageEndPointConfiguration isKindOfClass:[NSString class]] || storageEndPointConfiguration.length == 0)
+    {
+        NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorInvalidEndpoint errorDomain:kSDKErrorDomain];
+        
+        if (completion)
+        {
+            completion(NO, localizedError);
+        }
+        
+        return;
+    }
+    
+    NSString *storageEndPoint = [storageEndPointConfiguration stringByDeletingLastPathComponent];
+    
     switch (mode) {
             
         case MASCloudStorageSegmentApplication:
@@ -285,10 +354,7 @@
     //
     if (!key)
     {
-        NSString *message = NSLocalizedString(@"Missing parameter", @"Missing parameter");
-        NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
-                                                      code:MASStorageErrorObjectNotSupported
-                                                  userInfo:@{NSLocalizedDescriptionKey : message}];
+        NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorParameterCanNotBeEmptyOrNil errorDomain:kSDKErrorDomain];
         
         if (completion)
         {
@@ -428,10 +494,7 @@
     }
     else if (completion) {
         
-        NSString *message = NSLocalizedString(@"Object not supported", @"Object not supported");
-        NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
-                                                      code:MASStorageErrorObjectNotSupported
-                                                  userInfo:@{ NSLocalizedDescriptionKey : message }];
+        NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorObjectNotSupported errorDomain:kSDKErrorDomain];
         
         completion(NO, localizedError);
         
@@ -496,10 +559,8 @@
     //
     if (!key)
     {
-        NSString *message = NSLocalizedString(@"Missing parameter", @"Missing parameter");
-        NSError *localizedError = [NSError errorWithDomain:kSDKErrorDomain
-                                                      code:MASStorageErrorObjectNotSupported
-                                                  userInfo:@{NSLocalizedDescriptionKey : message}];
+        
+        NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorParameterCanNotBeEmptyOrNil errorDomain:kSDKErrorDomain];
         
         if (completion)
         {
@@ -545,39 +606,27 @@
 {
     if (!object || [object isKindOfClass:[NSNull class]]) {
     
-        NSString *message = NSLocalizedString(@"Parameter cannot be empty or nil", @"Parameter cannot be empty or nil");
-        
         if (*error != nil)
         {
-            *error = [NSError errorWithDomain:kSDKErrorDomain
-                                         code:MASStorageErrorObjectNotSupported
-                                     userInfo:@{ NSLocalizedDescriptionKey : message }];
+            *error = [NSError errorForStorageErrorCode:MASStorageErrorParameterCanNotBeEmptyOrNil errorDomain:kSDKErrorDomain];
         }
         
         return NO;
     }
     else if (!key || [key isKindOfClass:[NSNull class]]) {
         
-        NSString *message = NSLocalizedString(@"Parameter cannot be empty or nil", @"Parameter cannot be empty or nil");
-        
         if (*error != nil)
         {
-            *error = [NSError errorWithDomain:kSDKErrorDomain
-                                         code:MASStorageErrorObjectNotSupported
-                                     userInfo:@{ NSLocalizedDescriptionKey : message }];
+            *error = [NSError errorForStorageErrorCode:MASStorageErrorParameterCanNotBeEmptyOrNil errorDomain:kSDKErrorDomain];
         }
         
         return NO;
     }
     else if (!type || [type isKindOfClass:[NSNull class]]) {
-
-        NSString *message = NSLocalizedString(@"Parameter cannot be empty or nil", @"Parameter cannot be empty or nil");
         
         if (*error != nil)
         {
-            *error = [NSError errorWithDomain:kSDKErrorDomain
-                                         code:MASStorageErrorObjectNotSupported
-                                     userInfo:@{ NSLocalizedDescriptionKey : message }];
+            *error = [NSError errorForStorageErrorCode:MASStorageErrorParameterCanNotBeEmptyOrNil errorDomain:kSDKErrorDomain];
         }
         
         return NO;

@@ -25,12 +25,12 @@
                 completion:(void (^)(MASObject *object, NSError *error))completion
 {
     NSString *pathURL;
-    NSString *storageEndPoint = [[[MASConfiguration currentConfiguration] endpointPathForKey:MASStorageEndPointKey] stringByDeletingLastPathComponent];
-
+    NSString *storageEndPointConfiguration = [[MASConfiguration currentConfiguration] endpointPathForKey:MASStorageEndPointKey];
+    
     //
     // Endpoint validation
     //
-    if (!storageEndPoint || ![storageEndPoint isKindOfClass:[NSString class]] || storageEndPoint.length == 0)
+    if (!storageEndPointConfiguration || ![storageEndPointConfiguration isKindOfClass:[NSString class]] || storageEndPointConfiguration.length == 0)
     {
         NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorInvalidEndpoint errorDomain:kSDKErrorDomain];
         
@@ -41,6 +41,8 @@
         
         return;
     }
+    
+    NSString *storageEndPoint = [storageEndPointConfiguration stringByDeletingLastPathComponent];
     
     switch (mode) {
             
@@ -102,12 +104,12 @@
                   completion:(void (^)(NSArray *objects, NSError *error))completion
 {
     NSString *pathURL;
-    NSString *storageEndPoint = [[[MASConfiguration currentConfiguration] endpointPathForKey:MASStorageEndPointKey] stringByDeletingLastPathComponent];
-
+    NSString *storageEndPointConfiguration = [[MASConfiguration currentConfiguration] endpointPathForKey:MASStorageEndPointKey];
+    
     //
     // Endpoint validation
     //
-    if (!storageEndPoint || ![storageEndPoint isKindOfClass:[NSString class]] || storageEndPoint.length == 0)
+    if (!storageEndPointConfiguration || ![storageEndPointConfiguration isKindOfClass:[NSString class]] || storageEndPointConfiguration.length == 0)
     {
         NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorInvalidEndpoint errorDomain:kSDKErrorDomain];
         
@@ -118,6 +120,8 @@
         
         return;
     }
+    
+    NSString *storageEndPoint = [storageEndPointConfiguration stringByDeletingLastPathComponent];
     
     switch (mode) {
             
@@ -183,12 +187,12 @@
         completion:(void (^)(BOOL success, NSError *error))completion
 {
     NSString *pathURL;
-    NSString *storageEndPoint = [[[MASConfiguration currentConfiguration] endpointPathForKey:MASStorageEndPointKey] stringByDeletingLastPathComponent];
-
+    NSString *storageEndPointConfiguration = [[MASConfiguration currentConfiguration] endpointPathForKey:MASStorageEndPointKey];
+    
     //
     // Endpoint validation
     //
-    if (!storageEndPoint || ![storageEndPoint isKindOfClass:[NSString class]] || storageEndPoint.length == 0)
+    if (!storageEndPointConfiguration || ![storageEndPointConfiguration isKindOfClass:[NSString class]] || storageEndPointConfiguration.length == 0)
     {
         NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorInvalidEndpoint errorDomain:kSDKErrorDomain];
         
@@ -199,6 +203,8 @@
         
         return;
     }
+    
+    NSString *storageEndPoint = [storageEndPointConfiguration stringByDeletingLastPathComponent];
     
     switch (mode) {
             
@@ -261,12 +267,12 @@
                   completion:(void (^)(BOOL success, NSError *error))completion
 {
     NSString *pathURL;
-    NSString *storageEndPoint = [[[MASConfiguration currentConfiguration] endpointPathForKey:MASStorageEndPointKey] stringByDeletingLastPathComponent];
-
+    NSString *storageEndPointConfiguration = [[MASConfiguration currentConfiguration] endpointPathForKey:MASStorageEndPointKey];
+    
     //
     // Endpoint validation
     //
-    if (!storageEndPoint || ![storageEndPoint isKindOfClass:[NSString class]] || storageEndPoint.length == 0)
+    if (!storageEndPointConfiguration || ![storageEndPointConfiguration isKindOfClass:[NSString class]] || storageEndPointConfiguration.length == 0)
     {
         NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorInvalidEndpoint errorDomain:kSDKErrorDomain];
         
@@ -277,6 +283,8 @@
         
         return;
     }
+    
+    NSString *storageEndPoint = [storageEndPointConfiguration stringByDeletingLastPathComponent];
     
     switch (mode) {
             

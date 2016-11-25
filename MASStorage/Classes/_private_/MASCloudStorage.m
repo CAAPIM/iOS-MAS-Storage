@@ -606,7 +606,7 @@
 {
     if (!object || [object isKindOfClass:[NSNull class]]) {
     
-        if (*error != nil)
+        if (error)
         {
             *error = [NSError errorForStorageErrorCode:MASStorageErrorParameterCanNotBeEmptyOrNil errorDomain:kSDKErrorDomain];
         }
@@ -615,7 +615,7 @@
     }
     else if (!key || [key isKindOfClass:[NSNull class]]) {
         
-        if (*error != nil)
+        if (error)
         {
             *error = [NSError errorForStorageErrorCode:MASStorageErrorParameterCanNotBeEmptyOrNil errorDomain:kSDKErrorDomain];
         }
@@ -624,7 +624,7 @@
     }
     else if (!type || [type isKindOfClass:[NSNull class]]) {
         
-        if (*error != nil)
+        if (error)
         {
             *error = [NSError errorForStorageErrorCode:MASStorageErrorParameterCanNotBeEmptyOrNil errorDomain:kSDKErrorDomain];
         }

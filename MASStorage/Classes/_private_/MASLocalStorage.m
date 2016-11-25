@@ -475,7 +475,7 @@ MASLocalStorage *_sharedStorage = nil;
 {
     if (!object || [object isKindOfClass:[NSNull class]]) {
         
-        if (*error != nil)
+        if (error)
         {
             *error = [NSError errorForStorageErrorCode:MASStorageErrorParameterCanNotBeEmptyOrNil errorDomain:kSDKErrorDomain];
         }
@@ -484,7 +484,7 @@ MASLocalStorage *_sharedStorage = nil;
     }
     else if (!key || [key isKindOfClass:[NSNull class]]) {
         
-        if (*error != nil)
+        if (error)
         {
             *error = [NSError errorForStorageErrorCode:MASStorageErrorParameterCanNotBeEmptyOrNil errorDomain:kSDKErrorDomain];
         }
@@ -493,7 +493,7 @@ MASLocalStorage *_sharedStorage = nil;
     }
     else if (!type || [type isKindOfClass:[NSNull class]]) {
         
-        if (*error != nil)
+        if (error)
         {
             *error = [NSError errorForStorageErrorCode:MASStorageErrorParameterCanNotBeEmptyOrNil errorDomain:kSDKErrorDomain];
         }

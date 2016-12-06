@@ -492,11 +492,15 @@
         
         encodeData = (NSData *)object;
     }
-    else if (completion) {
+    else {
+        
+        if (completion) {
         
         NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorObjectNotSupported errorDomain:kSDKErrorDomain];
         
         completion(NO, localizedError);
+        
+        }
         
         return;
     }

@@ -1,9 +1,15 @@
+# Version 1.3
+
+### Bug fixes
+- Added nullability annotations to certain interfaces. [US238629]
+- Improved error handling in the case of missing parameters. [US238629]
+
+### New features
+
 # Version 1.2.00-CR1
 
 ### Bug fixes
 - Version number and version string returned incorrect values. [MCT-437]
-- Added nullability annotations to certain interfaces. [US238629]
-- Improved error handling in the case of missing parameters. [US238629]
 
 ### New features
 

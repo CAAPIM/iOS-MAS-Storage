@@ -246,11 +246,15 @@ MASLocalStorage *_sharedStorage = nil;
         
         encodeData = (NSData *)object;
     }
-    else if (completion) {
+    else {
+        
+        if (completion) {
         
         NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorObjectNotSupported errorDomain:kSDKErrorDomain];
         
         completion(NO, localizedError);
+            
+        }
         
         return;
     }
@@ -338,16 +342,20 @@ MASLocalStorage *_sharedStorage = nil;
         
         encodeData = (NSData *)object;
     }
-    else if (completion) {
+    else {
+        
+        if (completion) {
         
         NSError *localizedError = [NSError errorForStorageErrorCode:MASStorageErrorObjectNotSupported errorDomain:kSDKErrorDomain];
         
         completion(NO, localizedError);
         
+        }
+        
         return;
     }
-    NSError *encryptionError;
     
+    NSError *encryptionError;
     
     //
     //Encrypt Object before sending to the database

@@ -11,8 +11,6 @@
 #import "MASCloudStorage.h"
 
 #import <MASFoundation/MASFoundation.h>
-#import "MASObject+MASStorage.h"
-#import "MASObject+StoragePrivate.h"
 #import "MASStorageConstantsPrivate.h"
 #import "NSError+MASStoragePrivate.h"
 

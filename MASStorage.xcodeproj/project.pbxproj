@@ -29,11 +29,7 @@
 		A4567F221C8CB690000486BA /* MASDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = A4567F101C8CB690000486BA /* MASDatabase.m */; };
 		A4567F271C8CB690000486BA /* MAS+LocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = A4567F161C8CB690000486BA /* MAS+LocalStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A4567F281C8CB690000486BA /* MAS+LocalStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = A4567F171C8CB690000486BA /* MAS+LocalStorage.m */; };
-		A4567F2F1C8CB690000486BA /* MASSecureStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = A4567F1E1C8CB690000486BA /* MASSecureStorage.h */; };
-		A4567F301C8CB690000486BA /* MASSecureStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = A4567F1F1C8CB690000486BA /* MASSecureStorage.m */; };
 		A4567F311C8CB690000486BA /* MASStorageConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = A4567F201C8CB690000486BA /* MASStorageConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A4567F341C8CB7B6000486BA /* MASObject+MASStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = A4567F321C8CB7B6000486BA /* MASObject+MASStorage.h */; };
-		A4567F351C8CB7B6000486BA /* MASObject+MASStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = A4567F331C8CB7B6000486BA /* MASObject+MASStorage.m */; };
 		A4567F381C8CB860000486BA /* MASCloudStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = A4567F361C8CB860000486BA /* MASCloudStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A4567F391C8CB860000486BA /* MASCloudStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = A4567F371C8CB860000486BA /* MASCloudStorage.m */; };
 		A4567F3C1C8CB86B000486BA /* MASLocalStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = A4567F3A1C8CB86B000486BA /* MASLocalStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -103,11 +99,7 @@
 		A4567F101C8CB690000486BA /* MASDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASDatabase.m; sourceTree = "<group>"; };
 		A4567F161C8CB690000486BA /* MAS+LocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MAS+LocalStorage.h"; sourceTree = "<group>"; };
 		A4567F171C8CB690000486BA /* MAS+LocalStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MAS+LocalStorage.m"; sourceTree = "<group>"; };
-		A4567F1E1C8CB690000486BA /* MASSecureStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASSecureStorage.h; sourceTree = "<group>"; };
-		A4567F1F1C8CB690000486BA /* MASSecureStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASSecureStorage.m; sourceTree = "<group>"; };
 		A4567F201C8CB690000486BA /* MASStorageConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASStorageConstants.h; sourceTree = "<group>"; };
-		A4567F321C8CB7B6000486BA /* MASObject+MASStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASObject+MASStorage.h"; sourceTree = "<group>"; };
-		A4567F331C8CB7B6000486BA /* MASObject+MASStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MASObject+MASStorage.m"; sourceTree = "<group>"; };
 		A4567F361C8CB860000486BA /* MASCloudStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MASCloudStorage.h; path = _private_/MASCloudStorage.h; sourceTree = "<group>"; };
 		A4567F371C8CB860000486BA /* MASCloudStorage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MASCloudStorage.m; path = _private_/MASCloudStorage.m; sourceTree = "<group>"; };
 		A4567F3A1C8CB86B000486BA /* MASLocalStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MASLocalStorage.h; path = _private_/MASLocalStorage.h; sourceTree = "<group>"; };
@@ -207,8 +199,6 @@
 			isa = PBXGroup;
 			children = (
 				A4567F201C8CB690000486BA /* MASStorageConstants.h */,
-				A4567F1E1C8CB690000486BA /* MASSecureStorage.h */,
-				A4567F1F1C8CB690000486BA /* MASSecureStorage.m */,
 				A4567F361C8CB860000486BA /* MASCloudStorage.h */,
 				A4567F371C8CB860000486BA /* MASCloudStorage.m */,
 				A4567F3A1C8CB86B000486BA /* MASLocalStorage.h */,
@@ -235,8 +225,6 @@
 			children = (
 				A4567F161C8CB690000486BA /* MAS+LocalStorage.h */,
 				A4567F171C8CB690000486BA /* MAS+LocalStorage.m */,
-				A4567F321C8CB7B6000486BA /* MASObject+MASStorage.h */,
-				A4567F331C8CB7B6000486BA /* MASObject+MASStorage.m */,
 			);
 			path = categories;
 			sourceTree = "<group>";
@@ -263,8 +251,6 @@
 				CB2922A51DDE752B008651FD /* MASObject+StoragePrivate.h in Headers */,
 				A4567F271C8CB690000486BA /* MAS+LocalStorage.h in Headers */,
 				10F0F3C31C2211870092BCF1 /* MASStorage-PrefixHeader.pch in Headers */,
-				A4567F341C8CB7B6000486BA /* MASObject+MASStorage.h in Headers */,
-				A4567F2F1C8CB690000486BA /* MASSecureStorage.h in Headers */,
 				A4567F381C8CB860000486BA /* MASCloudStorage.h in Headers */,
 				CB2922A91DDE7543008651FD /* NSError+MASStoragePrivate.h in Headers */,
 				A4567F3C1C8CB86B000486BA /* MASLocalStorage.h in Headers */,
@@ -416,8 +402,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A4567F221C8CB690000486BA /* MASDatabase.m in Sources */,
-				A4567F351C8CB7B6000486BA /* MASObject+MASStorage.m in Sources */,
-				A4567F301C8CB690000486BA /* MASSecureStorage.m in Sources */,
 				CB2922A61DDE752B008651FD /* MASObject+StoragePrivate.m in Sources */,
 				A4567F391C8CB860000486BA /* MASCloudStorage.m in Sources */,
 				CB2922AA1DDE7543008651FD /* NSError+MASStoragePrivate.m in Sources */,
@@ -545,7 +529,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = "1.3-CR1";
+				CURRENT_PROJECT_VERSION = 1.4.00;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -573,7 +557,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = "1.3-CR1";
+				CURRENT_PROJECT_VERSION = 1.4.00;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;

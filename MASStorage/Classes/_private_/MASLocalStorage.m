@@ -13,7 +13,6 @@
 #import <MASFoundation/MASFoundation.h>
 #import <objc/runtime.h> //Used for the dynamic getter and setter inside a Category.
 #import "MASDatabase.h"
-#import "MASObject+StoragePrivate.h"
 #import "MASStorageConstants.h"
 #import "MASStorageConstantsPrivate.h"
 #import "NSError+MASStoragePrivate.h"

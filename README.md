@@ -10,7 +10,7 @@ The MASStorage framework comes with the following features:
 
 ## Get Started
 
-- [Download MASConnecta][download] 
+- [Download MASStorage][download] 
 - Read the ["Getting Started" guide][get-started] or watch some [video tutorials][videos]
 - Check out our [documentation][docs] for more details and sample codes
 

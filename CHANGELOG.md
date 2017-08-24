@@ -3,15 +3,15 @@
 NOTE: From this version on the frameworks changed to Dynamic instead of Static library
 
 ### Bug fixes
-- 
+None.
 
 ### New Features
--  
+- Mobile SDK is now built as Dynamic Framework. [US367604]
 
 # Version 1.4.00
 
 ### Bug fixes
-none.
+None.
 
 # Version 1.3.00
 

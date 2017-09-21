@@ -24,6 +24,7 @@
 		102E999A1B98B16700CB297C /* MASStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 102E99991B98B16700CB297C /* MASStorage.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		102E99A01B98B16700CB297C /* MASStorage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 102E99941B98B16700CB297C /* MASStorage.framework */; };
 		102E99A71B98B16700CB297C /* MASStorageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 102E99A61B98B16700CB297C /* MASStorageTests.m */; };
+		10D485C81F1ED2860011CFB9 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 10D485C71F1ED2860011CFB9 /* libsqlite3.0.tbd */; };
 		10F0F3C31C2211870092BCF1 /* MASStorage-PrefixHeader.pch in Headers */ = {isa = PBXBuildFile; fileRef = 10F0F3C21C2211870092BCF1 /* MASStorage-PrefixHeader.pch */; };
 		A4567F211C8CB690000486BA /* MASDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = A4567F0F1C8CB690000486BA /* MASDatabase.h */; };
 		A4567F221C8CB690000486BA /* MASDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = A4567F101C8CB690000486BA /* MASDatabase.m */; };
@@ -91,6 +92,7 @@
 		102E999F1B98B16700CB297C /* MASStorageTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MASStorageTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		102E99A51B98B16700CB297C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		102E99A61B98B16700CB297C /* MASStorageTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MASStorageTests.m; sourceTree = "<group>"; };
+		10D485C71F1ED2860011CFB9 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		10F0F3C21C2211870092BCF1 /* MASStorage-PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASStorage-PrefixHeader.pch"; sourceTree = "<group>"; };
 		48E5E1DC1C3B24CE000FF0DA /* MASFoundation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MASFoundation.xcodeproj; path = ../MASFoundation/MASFoundation.xcodeproj; sourceTree = "<group>"; };
 		A40165971C32109A008B09DE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10D485C81F1ED2860011CFB9 /* libsqlite3.0.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +141,7 @@
 				102E99951B98B16700CB297C /* Products */,
 				A40165981C3210C8008B09DE /* LICENSE.md */,
 				A40165971C32109A008B09DE /* README.md */,
+				10D485C61F1ED2860011CFB9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -184,6 +188,14 @@
 				102E99A51B98B16700CB297C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		10D485C61F1ED2860011CFB9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				10D485C71F1ED2860011CFB9 /* libsqlite3.0.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		48E5E1DD1C3B24CE000FF0DA /* Products */ = {
@@ -473,7 +485,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -515,7 +527,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -529,7 +541,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 1.4.00;
+				CURRENT_PROJECT_VERSION = 1.5.00;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -543,8 +555,9 @@
 				GCC_PREFIX_HEADER = "MASStorage/MASStorage-PrefixHeader.pch";
 				INFOPLIST_FILE = MASStorage/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
+				MACH_O_TYPE = mh_dylib;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ca.$(PRODUCT_NAME:rfc1034identifier)";
@@ -557,7 +570,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 1.4.00;
+				CURRENT_PROJECT_VERSION = 1.5.00;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -571,8 +584,9 @@
 				GCC_PREFIX_HEADER = "MASStorage/MASStorage-PrefixHeader.pch";
 				INFOPLIST_FILE = MASStorage/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
+				MACH_O_TYPE = mh_dylib;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.ca.$(PRODUCT_NAME:rfc1034identifier)";

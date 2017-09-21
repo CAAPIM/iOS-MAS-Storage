@@ -1,7 +1,17 @@
+# Version 1.5.00
+
+NOTE: From this version on the frameworks changed to Dynamic instead of Static library
+
+### Bug fixes
+None.
+
+### New Features
+- The SDK supports dynamic framework. All you need to do is update your Xcode settings. [US367604]
+
 # Version 1.4.00
 
 ### Bug fixes
-none.
+None.
 
 # Version 1.3.00
 

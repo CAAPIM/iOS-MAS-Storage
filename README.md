@@ -1,4 +1,4 @@
-MASStorage is the data peristence framework of the Mobile SDK, which is part of [CA Mobile App Services][mas.ca.com]. It stores, manages, and accesses data in a private local and cloud.
+MASStorage is the data peristence framework of the iOS Mobile SDK, which is part of CA Mobile API Gateway. It stores, manages, and accesses data in a private local and cloud.
 
 ## Features
 
@@ -10,9 +10,8 @@ The MASStorage framework comes with the following features:
 
 ## Get Started
 
-- [Download MASConnecta][download] 
-- Read the ["Getting Started" guide][get-started] or watch some [video tutorials][videos]
-- Check out our [documentation][docs] for more details and sample codes
+- Check out our [documentation][docs] for sample code, video tutorials, and more.
+- [Download MASStorage][download] 
 
 
 ## Communication
@@ -295,4 +294,3 @@ of the MIT license. See the [LICENSE][license-link] file for details.
  [download]: https://github.com/CAAPIM/iOS-MAS-Storage/archive/master.zip
  [contributing]: https://github.com/CAAPIM/iOS-MAS-Storage/blob/develop/CONTRIBUTING.md
  [license-link]: /LICENSE
-

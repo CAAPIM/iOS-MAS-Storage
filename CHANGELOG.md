@@ -1,3 +1,11 @@
+# Version 1.6.00
+
+### Bug fixes
+None.
+
+### New features
+None.
+
 # Version 1.5.00
 
 NOTE: From this version on the frameworks changed to Dynamic instead of Static library
@@ -13,7 +21,7 @@ None.
 ### Bug fixes
 None.
 
-# Version 1.3.00
+# Version 1.3.01
 
 ### Bug fixes
 - Added nullability annotations to certain interfaces. [US238629]

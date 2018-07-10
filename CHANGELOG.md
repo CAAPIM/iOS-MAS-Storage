@@ -1,3 +1,11 @@
+# Version 1.7.10
+
+### Bug fixes
+None.
+
+### New features
+None.
+
 # Version 1.7.00
 
 ### Bug fixes

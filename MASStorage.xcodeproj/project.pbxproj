@@ -645,6 +645,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MASStorage/MASStorage-PrefixHeader.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 			};
 			name = Debug;
 		};
@@ -655,6 +656,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MASStorage/MASStorage-PrefixHeader.pch";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 			};
 			name = Release;
 		};

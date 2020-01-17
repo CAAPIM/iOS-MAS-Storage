@@ -22,5 +22,4 @@ FOUNDATION_EXPORT const unsigned char MASStorageVersionString[];
 #import <MASStorage/MAS+LocalStorage.h>
 
 #import <MASStorage/MASStorageConstants.h>
-#import <MASStorage/MASCloudStorage.h>
 #import <MASStorage/MASLocalStorage.h>

@@ -1,3 +1,14 @@
+# Version 2.1.00
+
+### Bug fixes
+None.
+
+### New features
+None.
+
+### Deprecated/Removed
+- Cloud storage related classes/interfaces are removed.
+
 # Version 2.0.00
 
 ### Bug fixes

@@ -1,3 +1,14 @@
+# Version 2.2.00
+
+### Bug fixes
+None.
+
+### New features
+None.
+
+### Deprecated/Removed
+None.
+
 # Version 2.1.00
 
 ### Bug fixes
